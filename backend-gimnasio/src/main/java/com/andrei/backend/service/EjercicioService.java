@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.andrei.backend.model.Ejercicio;
@@ -15,24 +16,23 @@ public class EjercicioService {
     @Autowired
     private EjercicioRepository ejercicioRepository;
 
-    // Listar todos
     public List<Ejercicio> findAll() {
-        return ejercicioRepository.findAll();
+        return ejercicioRepository.findAll(Sort.by("nombre").ascending());
     }
 
-    // Buscar por id
     public Optional<Ejercicio> findById(Long id) {
         return ejercicioRepository.findById(id);
     }
 
-    // Guardar o actualizar
-    public Ejercicio save(Ejercicio ejercicio) {
-        return ejercicioRepository.save(ejercicio);
+    public List<Ejercicio> buscarPorNombre(String q) {
+        return ejercicioRepository.findByNombreContainingIgnoreCaseOrderByNombreAsc(q);
     }
 
-    // Borrar por id
-    public void delete(Long id) {
-        ejercicioRepository.deleteById(id);
+    public List<String> listarGrupos() {
+        return ejercicioRepository.findDistinctGrupoMuscular();
     }
-    
+
+    public List<Ejercicio> listarPorGrupo(String grupo) {
+        return ejercicioRepository.findByGrupoMuscularOrderByNombreAsc(grupo);
+    }
 }

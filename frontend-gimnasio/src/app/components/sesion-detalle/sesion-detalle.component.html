@@ -1,0 +1,14 @@
+<h2>Sesión: {{ fecha }}</h2>
+
+<hr>
+
+<div class="grid">
+  <div class="card" *ngFor="let g of grupos">
+    <h3>{{ g.nombre || ('Ejercicio ' + g.ejercicioId) }}</h3>
+    <ul>
+      <li *ngFor="let s of g.series; let i = index">
+        Serie {{ i + 1 }} — {{ s.repeticiones }} reps × {{ s.peso }} kg
+      </li>
+    </ul>
+  </div>
+</div>

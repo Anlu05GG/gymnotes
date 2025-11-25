@@ -1,0 +1,40 @@
+<h2>Entrenar hoy 💪</h2>
+
+<div class="toolbar">
+  <input [(ngModel)]="q" (ngModelChange)="filtrar()" placeholder="Buscar ejercicio...">
+  <select [(ngModel)]="grupoSel" (ngModelChange)="filtrar()">
+    <option value="">-- Todos los grupos --</option>
+    <option *ngFor="let g of grupos" [value]="g">{{ g }}</option>
+  </select>
+  <button class="clean" (click)="limpiarFiltros()">Limpiar</button>
+</div>
+
+<div class="toolbar">
+  <select [(ngModel)]="ejercicioId">
+    <option [ngValue]="null">Selecciona ejercicio</option>
+    <option *ngFor="let e of opciones" [ngValue]="e.id">{{ e.nombre }}</option>
+  </select>
+
+  <input type="number" [(ngModel)]="peso" min="0" step="2.5" placeholder="Peso (kg)">
+  <input type="number" [(ngModel)]="reps" min="1" placeholder="Reps">
+  <button (click)="add()" [disabled]="!ejercicioId || reps < 1 || peso < 0">Añadir serie</button>
+</div>
+
+<hr>
+
+<ng-container *ngIf="gruposSeries.length; else vacio">
+  <div class="grid">
+    <div class="card" *ngFor="let g of gruposSeries">
+      <h3>{{ g.nombre || ('Ejercicio ' + g.ejercicioId) }}</h3>
+      <ul>
+        <li *ngFor="let s of g.series; let i = index">
+          Serie {{ i+1 }} — {{ s.peso }} kg × {{ s.repeticiones }} reps
+        </li>
+      </ul>
+    </div>
+  </div>
+</ng-container>
+
+<ng-template #vacio>
+  <p>No hay series todavía. A entrenar 🔝</p>
+</ng-template>

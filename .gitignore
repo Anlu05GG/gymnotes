@@ -1,0 +1,27 @@
+# --- Global básicos ---
+.DS_Store
+Thumbs.db
+*.log
+*.env
+*.iml
+.idea/
+.vscode/
+*.swp
+
+# --- Java / Spring (backend-gimnasio) ---
+/backend-gimnasio/target/
+/backend-gimnasio/.classpath
+/backend-gimnasio/.project
+/backend-gimnasio/.settings/
+/backend-gimnasio/.apt_generated
+
+# --- Node / Angular (frontend-gimnasio) ---
+/frontend-gimnasio/node_modules/
+/frontend-gimnasio/dist/
+/frontend-gimnasio/.angular/cache/
+/frontend-gimnasio/.husky/
+/frontend-gimnasio/.env.local
+
+# --- Build/coverage genéricos ---
+coverage/
+build/

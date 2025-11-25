@@ -1,0 +1,53 @@
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 20px;
+
+  background: linear-gradient(to right, #ff0040, #8c00ff);
+  color: rgba(255, 255, 255, 0.918);
+}
+
+h1 {
+  font-size: 1.3rem;
+  margin: 0;
+  background-color: #4444445d;
+  padding: 6px 12px;
+  border-radius: 10px;
+}
+
+div {
+  justify-self: center;
+  font-weight: 600;
+}
+
+nav {
+  display: flex;
+  gap: 10px;
+}
+
+button {
+  background-color: #444;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.active {
+  border: 2px solid #f0f0f0;
+}
+
+button:hover {
+  background-color: #666;
+}
+
+.salir {
+  background-color: #a00;
+}
+
+.salir:hover {
+  background-color: #d33;
+}

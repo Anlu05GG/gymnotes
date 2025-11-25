@@ -1,0 +1,80 @@
+:host {
+    display: block;
+    max-width: 900px;
+    margin: 22px auto;
+}
+
+h2 {
+    margin: 0 0 12px;
+}
+
+.toolbar {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+input {
+    padding: 8px 10px;
+    border: 1px solid #bbb;
+    border-radius: 6px;
+}
+
+.btn {
+    background: #444;
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background: #666;
+}
+
+.smallBtn {
+    background: #eee;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 999px;
+    cursor: pointer;
+}
+
+.smallBtn:hover {
+    background: #ddd;
+}
+
+.smallBtn.remove {
+    background: #ffe5e5;
+    color: #a00;
+}
+
+.smallBtn.remove:hover {
+    background: #ffd6d6;
+}
+
+.btns {
+    display: flex;
+    gap: 6px;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 12px 0 0;
+    display: grid;
+    gap: 10px;
+}
+
+li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 10px 12px;
+}

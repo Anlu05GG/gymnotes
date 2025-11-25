@@ -1,0 +1,24 @@
+<h2>Registrar Usuario</h2>
+
+<form (ngSubmit)="submit()">
+
+    <div>
+        <label>Usuario</label><br>
+        <input type="text" [(ngModel)]="form.usuario" name="usuario" required>
+    </div>
+
+    <div style="margin-top:8px">
+        <label>Email</label><br>
+        <input type="email" [(ngModel)]="form.email" name="email" required>
+    </div>
+
+    <div style="margin-top:8px">
+        <label>Contraseña</label><br>
+        <input type="password" [(ngModel)]="form.password" name="password" required>
+    </div>
+
+    <button class="btn" type="submit" [disabled]="loading || !form.usuario || !form.email || !form.password" style="margin-top: 10px;">Registrarse</button>
+    <p class="error" *ngIf="error">{{ error }}</p>
+
+</form><br>
+<button class="link" routerLink="/login">¿Ya tienes cuenta?</button>

@@ -3,9 +3,9 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 export interface Ejercicio {
-  id?: number;
-  nombre: string;
-  grupoMuscular: string;
+  id?: number
+  nombre: string
+  grupoMuscular: string
   descripcion: string
 }
 
@@ -18,24 +18,25 @@ export class EjercicioService {
 
   constructor(private http: HttpClient) {}
 
-  // READ
+
+  // Listar todos los ejercicios
   listarEjercicios(): Observable<Ejercicio[]> {
     return this.http.get<Ejercicio[]>(this.apiUrl)
   }
 
-  // CREATE
-  crearEjercicio(ejercicio: Ejercicio): Observable<Ejercicio> {
-    return this.http.post<Ejercicio>(this.apiUrl, ejercicio)
+  // Buscar por nombre
+  buscar(q: string): Observable<Ejercicio[]> {
+    return this.http.get<Ejercicio[]>(`${this.apiUrl}/search`, { params: { q } })
   }
 
-  // UPTADE
-  actualizarEjercicio(id: number, ejercicio: Ejercicio): Observable<Ejercicio> {
-    return this.http.put<Ejercicio>(`${this.apiUrl}/${id}`, ejercicio)
+  // Listar todos los grupos musculares únicos
+  listarGrupos(): Observable<string[]> {
+    return this.http.get<string[]>(`${this.apiUrl}/grupos`)
   }
 
-  // DELETE
-  eliminarEjercicio(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/${id}`)
+  // Listar ejercicios filtrando por grupo muscular
+  listarPorGrupo(g: string): Observable<Ejercicio[]> {
+    return this.http.get<Ejercicio[]>(`${this.apiUrl}/grupo/${encodeURIComponent(g)}`)
   }
 
 }

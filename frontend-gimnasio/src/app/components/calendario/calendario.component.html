@@ -1,0 +1,26 @@
+<div class="cal">
+  <div class="top">
+    <button (click)="anteriorMes()">‹</button>
+    <div>{{ meses[mes0] }} {{ anio }}</div>
+    <button (click)="siguienteMes()">›</button>
+  </div>
+
+  <div class="grid">
+    <div class="head">L</div>
+    <div class="head">M</div>
+    <div class="head">X</div>
+    <div class="head">J</div>
+    <div class="head">V</div>
+    <div class="head">S</div>
+    <div class="head">D</div>
+
+    <ng-container *ngFor="let semana of semanas">
+      <ng-container *ngFor="let dia of semana">
+        <div class="cell" [class.hoy]="dia.iso === hoyISO" [class.fire]="dia.entreno" (click)="abrirDia(dia)">
+          <span *ngIf="dia.d">{{ dia.d }}</span>
+          <span class="emoji" *ngIf="dia.entreno">🔥</span>
+        </div>
+      </ng-container>
+    </ng-container>
+  </div>
+</div>

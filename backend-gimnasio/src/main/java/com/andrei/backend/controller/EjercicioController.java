@@ -4,13 +4,10 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.andrei.backend.model.Ejercicio;
@@ -34,23 +31,23 @@ public class EjercicioController {
     public Optional<Ejercicio> getById(@PathVariable Long id) {
         return ejercicioService.findById(id);
     }
-
-    // Crear o actualizar
-    @PostMapping
-    public Ejercicio create(@RequestBody Ejercicio ejercicio) {
-        return ejercicioService.save(ejercicio);
+    
+    // Buscar por nombre
+    @GetMapping("/search")
+    public List<Ejercicio> search(@RequestParam String q) {
+        return ejercicioService.buscarPorNombre(q);
     }
 
-    // Actualizar
-    @PutMapping("/{id}")
-    public Ejercicio update(@PathVariable Long id, @RequestBody Ejercicio ejercicio) {
-        ejercicio.setId(id);
-        return ejercicioService.save(ejercicio);
+    // Listar grupos
+    @GetMapping("/grupos")
+    public List<String> grupos() {
+        return ejercicioService.listarGrupos();
     }
 
-    // Borrar
-    @DeleteMapping("/{id}")
-    public void delete(@PathVariable Long id) {
-        ejercicioService.delete(id);
+    // Listar por grupo
+    @GetMapping("/grupo/{g}")
+    public List<Ejercicio> porGrupo(@PathVariable String g) {
+        return ejercicioService.listarPorGrupo(g);
     }
+    
 }
