@@ -3,12 +3,15 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { RutinaItemDTO, RutinaService } from '../../../services/rutina.service';
 import { Ejercicio, EjercicioService } from '../../../services/ejercicio.service';
 import { CommonModule } from '@angular/common';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatAutocompleteModule  } from '@angular/material/autocomplete';
 import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-rutina-items',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, MatFormFieldModule, MatInputModule, MatAutocompleteModule],
   templateUrl: './rutina-items.component.html',
   styleUrl: './rutina-items.component.css'
 })
@@ -16,6 +19,7 @@ export class RutinaItemsComponent implements OnInit {
 
   rutinaId!: number
   items: RutinaItemDTO[] = []
+  rutinaNombre?: string
   
   private todos: Ejercicio[] = []
   opciones: Ejercicio[] = []
@@ -33,6 +37,10 @@ export class RutinaItemsComponent implements OnInit {
   
 
   ngOnInit(): void {
+    const nav = this.router.getCurrentNavigation()
+    const state = (nav?.extras?.state || history.state) as { rutinaNombre?: string }
+    this.rutinaNombre = state?.rutinaNombre
+
     this.rutinaId = Number(this.route.snapshot.paramMap.get('id'))
     if (!this.rutinaId) { this.router.navigate(['/mis-rutinas']); return }
     this.cargar()
@@ -99,6 +107,17 @@ export class RutinaItemsComponent implements OnInit {
 
   volver() {
     this.router.navigate(['/mis-rutinas'])
+  }
+
+  seleccionar(nombre: string) {
+    const encontrado = this.opciones.find(e => e.nombre == nombre)
+    
+    if (encontrado && encontrado.id != null) {
+      this.ejercicioId = encontrado.id
+    } else {
+      this.ejercicioId = null
+    }
+
   }
 
 }

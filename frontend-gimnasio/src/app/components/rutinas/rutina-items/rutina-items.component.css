@@ -41,7 +41,7 @@ input, select {
 }
 
 .btn.clean:hover, .btn.back:hover {
-    color: #ddd;
+    background: #dddddd;
 }
 
 ul {
@@ -79,4 +79,9 @@ li {
 p {
     color: #666;
     font-style: italic;
+}
+
+.auto-input {
+  flex: auto;
+  max-width: 280px;
 }

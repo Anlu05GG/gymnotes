@@ -28,7 +28,7 @@ export class CalendarioComponent implements OnInit {
 
   constructor(private srv: EntrenarService, private auth: AuthService, private router: Router) {}
 
-  private toIso(d: Date) {
+  toIso(d: Date) {
     const y = d.getFullYear()
     const m = String(d.getMonth() + 1).padStart(2, '0')
     const day = String(d.getDate()).padStart(2, '0')
@@ -57,7 +57,7 @@ export class CalendarioComponent implements OnInit {
     this.cargarMes()
   }
 
-  private construirMatrizMes() {
+  construirMatrizMes() {
     const primero = new Date(this.anio, this.mes0, 1)
     const ultimo = new Date(this.anio, this.mes0 + 1, 0)
     const offset = (primero.getDay() + 6) % 7
@@ -77,7 +77,7 @@ export class CalendarioComponent implements OnInit {
     for (let i = 0; i < celdas.length; i += 7) this.semanas.push(celdas.slice(i, i + 7))
   }
 
-  private cargarMes() {
+  cargarMes() {
     this.srv.diasConEntrenoEnMes(this.usuarioId, this.anio, this.mes0)
       .subscribe(fuego => {
         this.diasConFuego = fuego

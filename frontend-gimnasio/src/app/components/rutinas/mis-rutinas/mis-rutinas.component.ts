@@ -54,7 +54,7 @@ export class MisRutinasComponent implements OnInit {
   }
 
   ver(r: Rutina) {
-    this.router.navigate(['/rutinas', r.id])
+    this.router.navigate(['/rutinas', r.id], {state: {rutinaNombre: r.nombre}})
   }
 
 }

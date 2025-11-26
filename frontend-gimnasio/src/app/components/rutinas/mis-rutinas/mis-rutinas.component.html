@@ -3,14 +3,14 @@
 <div *ngIf="error">{{ error }}</div>
 
 <div class="toolbar">
-  <input type="text" [(ngModel)]="nombreNueva" placeholder="Nombre de la rutina">
-  <button class="btn" (click)="crear()" [disabled]="!nombreNueva.trim()">Crear</button>
+  <input type="text" [(ngModel)]="nombreNueva" (keydown.enter)="crear()" placeholder="Nombre de la rutina">
+  <button class="btn" (click)="crear()"  [disabled]="!nombreNueva.trim()">Crear</button>
 </div>
 
 <ul *ngIf="rutinas.length; else vacio">
   <li *ngFor="let r of rutinas">
     <strong>{{ r.nombre }}</strong>
-    <small> · creada {{ r.fechaCreacion }}</small>
+    <small>creada {{ r.fechaCreacion }}</small>
     <span class="btns">
       <button class="smallBtn" (click)="ver(r)">Ver</button>
       <button class="smallBtn remove" (click)="borrar(r)">Borrar</button>

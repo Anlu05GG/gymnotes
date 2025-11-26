@@ -15,8 +15,8 @@
     <option *ngFor="let e of opciones" [ngValue]="e.id">{{ e.nombre }}</option>
   </select>
 
-  <input type="number" [(ngModel)]="peso" min="0" step="2.5" placeholder="Peso (kg)">
-  <input type="number" [(ngModel)]="reps" min="1" placeholder="Reps">
+  <input type="number" [(ngModel)]="peso" min="0" step="2.5" (keydown.enter)="add()" placeholder="Peso (kg)">
+  <input type="number" [(ngModel)]="reps" min="1" (keydown.enter)="add()" placeholder="Reps">
   <button (click)="add()" [disabled]="!ejercicioId || reps < 1 || peso < 0">Añadir serie</button>
 </div>
 

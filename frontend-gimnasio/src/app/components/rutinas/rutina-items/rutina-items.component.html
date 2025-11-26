@@ -1,26 +1,28 @@
-<h2>Ejercicios de la rutina</h2>
+<h2>Ejercicios de la rutina: {{ rutinaNombre }}</h2>
 <div *ngIf="error">{{ error }}</div>
 
 <div class="toolbar">
-  <input type="text" [(ngModel)]="q" (ngModelChange)="filtrar()" placeholder="Buscar ejercicio...">
+  <input type="text" class="auto-input" placeholder="Buscar ejercicio..." [(ngModel)]="q" (ngModelChange)="filtrar()" [matAutocomplete]="auto">
+
+  <mat-autocomplete #auto="matAutocomplete" (optionSelected)="seleccionar($event.option.value)">
+    <mat-option *ngFor="let e of opciones" [value]="e.nombre">{{ e.nombre }}</mat-option>
+  </mat-autocomplete>
+
   <select [(ngModel)]="grupoSel" (ngModelChange)="filtrar()">
     <option value="">-- Todos los grupos --</option>
     <option *ngFor="let g of grupos" [value]="g">{{ g }}</option>
   </select>
-  <button class="btn clean" (click)="limpiarFiltros()">Limpiar</button>
+
+  <button class="btn clean" type="button" (click)="limpiarFiltros()">Limpiar</button>
 </div>
 
+
 <div class="toolbar">
-  <select [(ngModel)]="ejercicioId">
-    <option [ngValue]="null">-- Selecciona ejercicio --</option>
-    <option *ngFor="let e of opciones" [ngValue]="e.id">
-      {{ e.nombre }} ({{ e.grupoMuscular }})
-    </option>
-  </select>
-  <input type="number" [(ngModel)]="series" min="1"> series
-  <input type="number" [(ngModel)]="reps" min="1"> reps
-  <button class="btn" (click)="add()" [disabled]="!ejercicioId || series < 1 || reps < 1">Añadir</button>
-  <button class="btn back" (click)="volver()">Volver</button>
+  <input type="number" [(ngModel)]="series" min="1" (keydown.enter)="add()"> series
+  <input type="number" [(ngModel)]="reps" min="1" (keydown.enter)="add()"> reps
+
+  <button class="btn" type="button" (click)="add()" [disabled]="!ejercicioId || series < 1 || reps < 1">Añadir</button>
+  <button class="btn back" type="button" (click)="volver()">Volver</button>
 </div>
 
 <hr>
