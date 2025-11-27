@@ -19,6 +19,7 @@ export class SesionDetalleComponent implements OnInit{
   series: Serie[] = []
   ejercicios: Ejercicio[] = []
   grupos: { ejercicioId:number; nombre?:string; series:Serie[] }[] = []
+  volumenTotal: number = 0
 
   constructor(private route: ActivatedRoute, private srv: EntrenarService, private ejSrv: EjercicioService, private router: Router, private auth: AuthService){}
 
@@ -38,8 +39,17 @@ export class SesionDetalleComponent implements OnInit{
         this.ejercicios = es
         this.srv.listarSeries(this.sesionId).subscribe(ss => {
           this.series = ss
+          let total = 0
+          for(const s of ss){
+            const peso = s.peso || 0
+            const reps = s.repeticiones || 0
+            total += peso * reps
+          }
+          this.volumenTotal = total;
           const map = new Map<number, Serie[]>()
-          for(const s of ss){ if(!map.has(s.ejercicioId)) map.set(s.ejercicioId, []); map.get(s.ejercicioId)!.push(s) }
+          for(const s of ss){
+            if(!map.has(s.ejercicioId)) map.set(s.ejercicioId, []); map.get(s.ejercicioId)!.push(s)
+          }
           this.grupos = Array.from(map.entries()).map(([id, ser]) => ({
             ejercicioId: id,
             nombre: es.find(e => e.id === id)?.nombre,

@@ -5,13 +5,16 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatAutocompleteModule  } from '@angular/material/autocomplete';
 
 type Grupo = { ejercicioId: number; nombre?: string; series: Serie[] };
 
 @Component({
   selector: 'app-entrenar',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, MatFormFieldModule, MatInputModule, MatAutocompleteModule],
   templateUrl: './entrenar.component.html',
   styleUrl: './entrenar.component.css'
 })
@@ -96,6 +99,17 @@ export class EntrenarComponent implements OnInit {
     this.entrenarService.agregarSerie(this.sesionId, this.ejercicioId, this.reps, this.peso).subscribe(_ => {
       this.cargarSeries()
     })
+  }
+
+  seleccionar(nombre: string) {
+    const encontrado = this.opciones.find(e => e.nombre == nombre)
+    
+    if (encontrado && encontrado.id != null) {
+      this.ejercicioId = encontrado.id
+    } else {
+      this.ejercicioId = null
+    }
+
   }
 
 }

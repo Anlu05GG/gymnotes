@@ -21,7 +21,7 @@ export class RutinaItemsComponent implements OnInit {
   items: RutinaItemDTO[] = []
   rutinaNombre?: string
   
-  private todos: Ejercicio[] = []
+  todos: Ejercicio[] = []
   opciones: Ejercicio[] = []
   grupos: string[] = []
   q = ''

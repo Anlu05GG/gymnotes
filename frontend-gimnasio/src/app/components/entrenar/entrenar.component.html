@@ -1,22 +1,27 @@
 <h2>Entrenar hoy 💪</h2>
 
 <div class="toolbar">
-  <input [(ngModel)]="q" (ngModelChange)="filtrar()" placeholder="Buscar ejercicio...">
+  <input type="text" class="auto-input" placeholder="Buscar ejercicio..." [(ngModel)]="q" (ngModelChange)="filtrar()" [matAutocomplete]="auto">
+
+  <mat-autocomplete #auto="matAutocomplete" (optionSelected)="seleccionar($event.option.value)">
+    <mat-option *ngFor="let e of opciones" [value]="e.nombre">{{ e.nombre }}</mat-option>
+  </mat-autocomplete>
+
   <select [(ngModel)]="grupoSel" (ngModelChange)="filtrar()">
     <option value="">-- Todos los grupos --</option>
     <option *ngFor="let g of grupos" [value]="g">{{ g }}</option>
   </select>
-  <button class="clean" (click)="limpiarFiltros()">Limpiar</button>
+
+  <button class="btn clean" type="button" (click)="limpiarFiltros()">Limpiar</button>
 </div>
 
 <div class="toolbar">
-  <select [(ngModel)]="ejercicioId">
-    <option [ngValue]="null">Selecciona ejercicio</option>
-    <option *ngFor="let e of opciones" [ngValue]="e.id">{{ e.nombre }}</option>
-  </select>
+  <label for="peso"><small>Peso:</small></label>
+  <input id="peso" class="input" type="number" [(ngModel)]="peso" min="0" step="2.5" (keydown.enter)="add()">
 
-  <input type="number" [(ngModel)]="peso" min="0" step="2.5" (keydown.enter)="add()" placeholder="Peso (kg)">
-  <input type="number" [(ngModel)]="reps" min="1" (keydown.enter)="add()" placeholder="Reps">
+  <label for="reps"><small>Repeticiones:</small></label>
+  <input id="reps" class="input" type="number" [(ngModel)]="reps" min="1" (keydown.enter)="add()">
+
   <button (click)="add()" [disabled]="!ejercicioId || reps < 1 || peso < 0">Añadir serie</button>
 </div>
 
@@ -27,9 +32,7 @@
     <div class="card" *ngFor="let g of gruposSeries">
       <h3>{{ g.nombre || ('Ejercicio ' + g.ejercicioId) }}</h3>
       <ul>
-        <li *ngFor="let s of g.series; let i = index">
-          Serie {{ i+1 }} — {{ s.peso }} kg × {{ s.repeticiones }} reps
-        </li>
+        <li *ngFor="let s of g.series; let i = index">{{ s.peso }} kg × {{ s.repeticiones }} reps</li>
       </ul>
     </div>
   </div>

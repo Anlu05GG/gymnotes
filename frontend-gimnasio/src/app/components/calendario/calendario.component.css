@@ -12,8 +12,8 @@
 }
 
 button {
-    background: #444;
-    color: #fff;
+    background: #363535;
+    color: #ffffff;
     border: none;
     padding: 6px 12px;
     border-radius: 6px;
@@ -21,7 +21,7 @@ button {
 }
 
 button:hover {
-    background: #666;
+    background: #535353;
 }
 
 .grid {
@@ -33,8 +33,8 @@ button:hover {
 .head {
     text-align: center;
     font-weight: 600;
-    color: #666;
-    background: #faf8ff;
+    color: #666666;
+    background: #f7f6fa;
     border-radius: 8px;
     padding: 6px 0;
 }
@@ -43,7 +43,7 @@ button:hover {
     height: 58px;
     border: 1px solid #ddd;
     border-radius: 10px;
-    background: #fff;
+    background: #ffffff;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -62,7 +62,7 @@ button:hover {
 }
 
 .cell.fire {
-    background: #fff5ff;
+    background: #fdf5fd;
     border-color: #e8d0ff;
     cursor: pointer;
 }

@@ -18,13 +18,17 @@ h2 {
 
 input, select {
     padding: 8px 10px;
-    border: 1px solid #bbb;
+    border: 1px solid #bdbdbd;
     border-radius: 6px;
 }
 
+.input {
+    max-width: 67px;
+}
+
 button { 
-    background: #444;
-    color: #fff;
+    background: #444444;
+    color: #ffffff;
     border: none;
     padding: 8px 12px;
     border-radius: 6px;
@@ -32,16 +36,16 @@ button {
 }
 
 button:hover {
-    background: #666;
+    background: #666666;
 }
 
 .clean {
-    background: #eee;
-    color: #222;
+    background: #eeeeee;
+    color: #1f1f1f;
 }
 
 .clean:hover {
-    background: #ddd;
+    background: #dddddd;
 }
 
 .grid {
@@ -51,17 +55,23 @@ button:hover {
 }
 
 .card {
-    background: #fff;
-    border: 1px solid #ddd;
+    background: #ffffff;
+    border: 1px solid #e0e0e0;
     border-radius: 10px;
     padding: 12px;
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+    box-shadow: 5px 5px 10px #000000;
+    justify-items: center;
 }
 
 ul {
-    margin: 8px 0 0 16px;
+    margin: 0 30px 8px 0;
 }
 
 p {
-    color: #666; font-style: italic; margin-top: 12px;
+    color: #666666; font-style: italic; margin-top: 12px;
+}
+
+.auto-input {
+  flex: auto;
+  max-width: 280px;
 }

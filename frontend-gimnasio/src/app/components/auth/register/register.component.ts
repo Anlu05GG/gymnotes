@@ -14,13 +14,33 @@ import { CommonModule } from '@angular/common';
 export class RegisterComponent {
 
   form: Usuario = { usuario: '', email: '', password: '' }
+  password2: string = ''
+
   loading = false
   error: string = ''
 
+  passwordPattern = '^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).{6,}$'
+
   constructor(private authService: AuthService, private router: Router) {}
+
+  get passwordsMatch(): boolean {
+    return this.form.password === this.password2;
+  }
 
   submit() {
     this.error = ''
+
+    if (this.form.password !== this.password2) {
+      this.error = 'Las contraseñas no coinciden'
+      return
+    }
+
+    const regex = new RegExp(this.passwordPattern)
+    if (!regex.test(this.form.password)) {
+      this.error = 'La contraseña debe tener mayúscula, minúscula, número y mínimo 6 caracteres'
+      return
+    }
+
     this.loading = true
 
     this.authService.register(this.form).subscribe({

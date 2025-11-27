@@ -1,5 +1,5 @@
 <h2>Sesión: {{ fecha }}</h2>
-
+<h3>Volumen: {{ volumenTotal }} kgs</h3>
 <hr>
 
 <div class="grid">
@@ -7,7 +7,7 @@
     <h3>{{ g.nombre || ('Ejercicio ' + g.ejercicioId) }}</h3>
     <ul>
       <li *ngFor="let s of g.series; let i = index">
-        Serie {{ i + 1 }} — {{ s.repeticiones }} reps × {{ s.peso }} kg
+        {{ s.peso }} kg × {{ s.repeticiones }} reps
       </li>
     </ul>
   </div>
