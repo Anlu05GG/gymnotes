@@ -19,6 +19,7 @@ import jakarta.persistence.EntityNotFoundException;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
+	// Errores de validación de parámetros de entrada
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<?> handleValidation(MethodArgumentNotValidException ex) {
         Map<String, Object> body = new HashMap<>();
@@ -31,24 +32,28 @@ public class GlobalExceptionHandler {
         return ResponseEntity.badRequest().body(body);
     }
 
+    // Errores de petición mal formada
     @ExceptionHandler({ MissingServletRequestParameterException.class, MethodArgumentTypeMismatchException.class })
     public ResponseEntity<?> handleBadRequest(Exception ex) {
         Map<String, Object> body = Map.of("status", 400, "error", ex.getMessage());
         return ResponseEntity.badRequest().body(body);
     }
 
+    // Errores de integridad en base de datos
     @ExceptionHandler(DataIntegrityViolationException.class)
     public ResponseEntity<?> handleConflict(DataIntegrityViolationException ex) {
         Map<String, Object> body = Map.of("status", 409, "error", "Violación de integridad. Revisa los datos");
         return ResponseEntity.status(HttpStatus.CONFLICT).body(body);
     }
 
+    // Cuando no se encuentra una entidad en base de datos
     @ExceptionHandler(EntityNotFoundException.class)
     public ResponseEntity<?> handleNotFound(EntityNotFoundException ex) {
         Map<String, Object> body = Map.of("status", 404, "error", ex.getMessage() != null ? ex.getMessage() : "No encontrado");
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(body);
     }
 
+    // Manejo de ResponseStatusException
     @ExceptionHandler(ResponseStatusException.class)
     public ResponseEntity<?> handleResponseStatus(ResponseStatusException ex) {
         int status = ex.getStatusCode().value();
@@ -56,12 +61,14 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(status).body(body);
     }
 
+    // Errores de datos no válidos de negocio
     @ExceptionHandler(IllegalArgumentException.class)
     public ResponseEntity<?> handleIllegalArg(IllegalArgumentException ex) {
         Map<String, Object> body = Map.of("status", 422, "error", ex.getMessage());
         return ResponseEntity.status(422).body(body);
     }
 
+    // Cualquier otro error
     @ExceptionHandler(Exception.class)
     public ResponseEntity<?> handleGeneric(Exception ex) {
         Map<String, Object> body = Map.of("status", 500, "error", "Error inesperado");

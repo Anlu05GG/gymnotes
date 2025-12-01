@@ -17,6 +17,7 @@ public class UsuarioService {
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 	
+	// Registro de nuevo usuario
 	public Usuario registrar(Usuario usuario) {
 		
 		usuario.setEmail(usuario.getEmail().trim().toLowerCase());
@@ -30,6 +31,7 @@ public class UsuarioService {
 		return usuarioRepository.save(usuario);
 	}
 	
+	// Inicio de sesión de usuario existente
 	public Usuario login(String email, String rawPassword) {
 		
 		email = email.trim().toLowerCase();
@@ -46,8 +48,8 @@ public class UsuarioService {
 		return u;
 	}
 	
+	// Buscar por email
 	public Usuario findByEmail(String email) {
-		
 		return usuarioRepository.findByEmail(email);
 	}
 	

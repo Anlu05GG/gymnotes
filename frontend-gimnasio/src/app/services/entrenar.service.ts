@@ -29,7 +29,9 @@ export class EntrenarService {
     return `${y}-${m}-${day}`
   }
 
+
   // SESIONES
+
   crearSesion(usuarioId: number): Observable<Sesion> {
     return this.http.post<Sesion>(`${this.apiUrl}?usuarioId=${usuarioId}`, {})
   }
@@ -77,7 +79,9 @@ export class EntrenarService {
     )
   }
 
+
   // SERIES
+
   agregarSerie(sesionId: number, ejercicioId: number, repeticiones: number, peso: number): Observable<Serie> {
     return this.http.post<Serie>(`${this.apiUrl}/${sesionId}/series`, { ejercicioId, repeticiones, peso })
   }

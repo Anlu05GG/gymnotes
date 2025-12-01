@@ -11,7 +11,6 @@ import jakarta.validation.constraints.NotBlank;
 @Table(name = "ejercicios")
 public class Ejercicio {
 	
-	// Creo los datos de la entidad
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -25,7 +24,6 @@ public class Ejercicio {
 	private String descripcion;
 
 	
-	// Creo los getters y setters
 	public Long getId() {
 		return id;
 	}

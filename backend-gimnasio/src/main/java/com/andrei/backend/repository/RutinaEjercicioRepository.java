@@ -13,9 +13,11 @@ public interface RutinaEjercicioRepository extends JpaRepository<RutinaEjercicio
     List<RutinaEjercicio> findByRutinaIdOrderByOrdenAsc(Long rutinaId);
 
     long countByRutinaId(Long rutinaId);
+    
     void deleteByRutinaId(Long rutinaId);
 
     Optional<RutinaEjercicio> findByRutinaIdAndEjercicioId(Long rutinaId, Long ejercicioId);
+    
     Optional<RutinaEjercicio> findTopByRutinaIdOrderByOrdenDesc(Long rutinaId);
     
     List<RutinaEjercicio> findByRutinaIdAndOrdenGreaterThanOrderByOrdenAsc(Long rutinaId, Integer orden);

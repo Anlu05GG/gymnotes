@@ -20,6 +20,7 @@ public class AuthController {
     @Autowired
     private UsuarioService usuarioService;
 
+    // Rgistro de usuario
     @PostMapping("/register")
     public ResponseEntity<?> register(@RequestBody @Valid Usuario nuevo) {
     	
@@ -34,6 +35,7 @@ public class AuthController {
         
     }
 
+    // Login de usuario
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody @Valid LoginRequest req) {
         try {

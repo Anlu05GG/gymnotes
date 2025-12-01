@@ -19,6 +19,7 @@ export class HeaderComponent implements OnInit {
     this.nombre = this.authService.getCurrentUser()?.usuario ?? null
   }
 
+  // Cerrar sesión
   salir() {
     this.authService.logout();
     this.router.navigate(['/login']);

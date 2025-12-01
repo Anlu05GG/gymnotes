@@ -33,6 +33,7 @@ public class SesionController {
         this.sesionService = sesionService;
     }
 
+    // Crear sesión, o devolver la ya creada
     @PostMapping
     public ResponseEntity<Sesion> crear(@RequestParam Long usuarioId) {
         Sesion sesion = sesionService.crearSesion(usuarioId);
@@ -40,18 +41,20 @@ public class SesionController {
         return ResponseEntity.created(location).body(sesion);
     }
 
+    // Listar las sesiones
     @GetMapping
     public List<Sesion> listar(@RequestParam Long usuarioId) {
         return sesionService.listarSesiones(usuarioId);
     }
 
+    // Devuelve sesión de un día concreto
     @GetMapping("/por-fecha")
-    public Sesion porFecha(@RequestParam Long usuarioId,
-                           @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fecha) {
+    public Sesion porFecha(@RequestParam Long usuarioId, @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fecha) {
         return sesionService.buscarPorFecha(usuarioId, fecha)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Sin sesión ese día"));
     }
 
+    // Devuelve sesiones de usuario entre dos fechas
     @GetMapping("/rango")
     public List<Sesion> sesionesEnRango(@RequestParam Long usuarioId,
                                         @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate desde,
@@ -59,6 +62,7 @@ public class SesionController {
         return sesionService.sesionesEnRango(usuarioId, desde, hasta);
     }
 
+    // Añade serie a sesión
     @PostMapping("/{sesionId}/series")
     public ResponseEntity<Serie> agregarSerie(@PathVariable Long sesionId,
                                               @Valid @RequestBody AddSerieRequest request) {
@@ -73,6 +77,7 @@ public class SesionController {
         return ResponseEntity.created(location).body(serie);
     }
 
+    // Lista series de sesión
     @GetMapping("/{sesionId}/series")
     public List<Serie> listarSeries(@PathVariable Long sesionId) {
         return sesionService.listarSeries(sesionId);

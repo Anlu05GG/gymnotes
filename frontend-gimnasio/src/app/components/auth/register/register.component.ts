@@ -19,22 +19,28 @@ export class RegisterComponent {
   loading = false
   error: string = ''
 
-  passwordPattern = '^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).{6,}$'
+  passwordPattern = '^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).{6,}$' // Contraseña: 6 caracteres, 1 mayúscula, 1 minúscula, y 1 número
+  emailPattern = '^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$' // Email
 
   constructor(private authService: AuthService, private router: Router) {}
-
-  get passwordsMatch(): boolean {
-    return this.form.password === this.password2;
-  }
 
   submit() {
     this.error = ''
 
+    // Validar patrón de email
+    const emailRegex = new RegExp(this.emailPattern)
+    if (!emailRegex.test(this.form.email)) {
+      this.error = 'Introduce un email válido (por ejemplo usuario@dominio.com)'
+      return
+    }
+
+    // Validar contraseñas iguales
     if (this.form.password !== this.password2) {
       this.error = 'Las contraseñas no coinciden'
       return
     }
 
+    // Validar patrón de contraseña
     const regex = new RegExp(this.passwordPattern)
     if (!regex.test(this.form.password)) {
       this.error = 'La contraseña debe tener mayúscula, minúscula, número y mínimo 6 caracteres'

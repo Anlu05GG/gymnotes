@@ -16,6 +16,7 @@ export class AppComponent {
 
   showHeader = false
 
+  // No mostrar el header si no han iniciado sesión
   constructor(private auth: AuthService, private router : Router) {
     this.router.events.pipe(filter(e => e instanceof NavigationEnd)).subscribe(() => {
       const url = this.router.url.split('?')[0]

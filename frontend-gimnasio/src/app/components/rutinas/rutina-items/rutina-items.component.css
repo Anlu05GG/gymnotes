@@ -6,6 +6,12 @@
 
 h2 {
     margin: 0 0 12px;
+    color: #ffffff;
+    text-shadow:
+    1px 1px 0 #000,
+    -1px 1px 0 #000,
+    1px -1px 0 #000,
+    -1px -1px 0 #000;
 }
 
 .toolbar {
@@ -24,6 +30,15 @@ input, select {
 
 .input {
     max-width: 64px;
+}
+
+label {
+    color: #ffffff;
+    text-shadow:
+    1px 1px 0 #000,
+    -1px 1px 0 #000,
+    1px -1px 0 #000,
+    -1px -1px 0 #000;
 }
 
 .btn {
@@ -81,8 +96,12 @@ li {
 }
 
 p {
-    color: #666666;
-    font-style: italic;
+    color: #ffffff;
+    text-shadow:
+    1px 1px 0 #000,
+    -1px 1px 0 #000,
+    1px -1px 0 #000,
+    -1px -1px 0 #000;
 }
 
 .auto-input {

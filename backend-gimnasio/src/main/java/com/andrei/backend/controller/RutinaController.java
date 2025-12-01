@@ -32,11 +32,13 @@ public class RutinaController {
         this.rutinaService = rutinaService;
     }
 
+    // Listar rutinas de usuario
     @GetMapping
     public List<Rutina> listar(@RequestParam Long usuarioId) {
         return rutinaService.listarPorUsuario(usuarioId);
     }
 
+    // Crear rutina
     @PostMapping
     public ResponseEntity<Rutina> crear(@Valid @RequestBody CrearRutinaRequest dto) {
         Rutina r = new Rutina();
@@ -48,12 +50,14 @@ public class RutinaController {
         return ResponseEntity.created(location).body(guardada);
     }
 
+    // Borrar rutina
     @DeleteMapping("/{rutinaId}")
     public ResponseEntity<Void> borrar(@PathVariable Long rutinaId) {
         rutinaService.borrarRutina(rutinaId);
         return ResponseEntity.noContent().build();
     }
 
+    // Listar ejercicios de rutina
     @GetMapping("/{rutinaId}/items")
     public List<RutinaItemDTO> items(@PathVariable Long rutinaId) {
         return rutinaService.listarItems(rutinaId).stream().map(item -> {
@@ -68,6 +72,7 @@ public class RutinaController {
         }).toList();
     }
 
+    // Añadir ejercicio a rutina
     @PostMapping("/{rutinaId}/items")
     public ResponseEntity<RutinaItemDTO> addItem(@PathVariable Long rutinaId,
                                                  @Valid @RequestBody AddItemRutinaRequest req) {
@@ -88,6 +93,7 @@ public class RutinaController {
         return ResponseEntity.created(location).body(dto);
     }
 
+    // Eliminar ejercicio de rutina
     @DeleteMapping("/items/{itemId}")
     public ResponseEntity<Void> quitarItem(@PathVariable Long itemId) {
         rutinaService.quitarItem(itemId);

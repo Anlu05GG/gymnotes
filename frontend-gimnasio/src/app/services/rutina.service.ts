@@ -58,6 +58,7 @@ export class RutinaService {
     return this.http.delete<void>(`${this.apiUrl}/items/${itemId}`).pipe(catchError(this.handle))
   }
 
+  // Procesa el error de la API y devuelve un Error con un mensaje entendible
   private handle = (err: any) => {
     const msg = err?.error?.error ?? Object.values(err?.error?.errors ?? {})?.[0] ?? 'Error inesperado'
 

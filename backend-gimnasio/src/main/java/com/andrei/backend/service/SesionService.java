@@ -22,6 +22,7 @@ public class SesionService {
 		this.serieRepository = serieRepository;
 	}
 	
+	// Crear sesión si no existe
 	public Sesion crearSesion(Long usuarioId) {
         LocalDate hoy = LocalDate.now();
         return sesionRepository
@@ -34,18 +35,22 @@ public class SesionService {
                 });
     }
 	
+	// Lista de sesiones
 	public List<Sesion> listarSesiones(Long usuarioId) {
 		return sesionRepository.findByUsuarioIdOrderByFechaDesc(usuarioId);
 	}
 	
+	// Buscar sesión
 	public Optional<Sesion> buscarPorFecha(Long usuarioId, LocalDate fecha) {
 	    return sesionRepository.findByUsuarioIdAndFecha(usuarioId, fecha);
 	}
 	
+	// Rango de sesiones para calendario
 	public List<Sesion> sesionesEnRango(Long usuarioId, LocalDate desde, LocalDate hasta) {
         return sesionRepository.findByUsuarioIdAndFechaBetweenOrderByFechaAsc(usuarioId, desde, hasta);
     }
 	
+	// Añadir serie a sesión
 	public Serie agregarSerie(Long sesionId, Long ejercicioId, Integer repeticiones, Double peso) {
 		Serie serie = new Serie();
 		serie.setSesionId(sesionId);
@@ -55,6 +60,7 @@ public class SesionService {
 		return serieRepository.save(serie);
 	}
 	
+	// Listar series de sesión
 	public List<Serie> listarSeries(Long sesionId) {
 		return serieRepository.findBySesionId(sesionId);
 	}

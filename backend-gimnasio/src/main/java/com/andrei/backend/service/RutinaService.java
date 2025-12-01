@@ -29,12 +29,15 @@ public class RutinaService {
         this.ejercicioRepo = ejercicioRepo;
     }
 
+    
     // RUTINAS
-
+    
+    // Lista rutinas de usuario ordenado por nombre
     public List<Rutina> listarPorUsuario(Long usuarioId) {
         return rutinaRepo.findByUsuarioIdOrderByNombreAsc(usuarioId);
     }
 
+    // Crea rutina mirando que no esté en blanco el nombre
     public Rutina crearRutina(Rutina r) {
         String nombre = r.getNombre() != null ? r.getNombre().trim() : "";
         if (nombre.isBlank()) {
@@ -44,18 +47,22 @@ public class RutinaService {
         return rutinaRepo.save(r);
     }
 
+    // Borra rutina y tambén sus ejercicios
     @Transactional
     public void borrarRutina(Long rutinaId) {
         reRepo.deleteByRutinaId(rutinaId);
         rutinaRepo.deleteById(rutinaId);
     }
 
+    
     // ITEMS
-
+    
+    // Lista ejercicios de rutina ordenados por su orden
     public List<RutinaEjercicio> listarItems(Long rutinaId) {
         return reRepo.findByRutinaIdOrderByOrdenAsc(rutinaId);
     }
 
+    // Añadir ejercicio a rutina
     public RutinaEjercicio addItem(Long rutinaId, Long ejercicioId, Integer series, Integer reps) {
         if (series == null || series < 1) throw new IllegalArgumentException("Las series deben ser >= 1");
         if (reps == null || reps < 1) throw new IllegalArgumentException("Las repeticiones deben ser >= 1");
@@ -80,6 +87,7 @@ public class RutinaService {
         return reRepo.save(item);
     }
 
+    // Elimina ejercicio y reordena
     @Transactional
     public void quitarItem(Long itemId) {
         RutinaEjercicio eliminado = reRepo.findById(itemId)
