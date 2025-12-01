@@ -40,26 +40,28 @@ button:hover {
     text-align: center;
     font-weight: 600;
     color: #666666;
-    background: #f7f6fa;
+    background: linear-gradient(to bottom, #ffffff, #ffe9cc);
     border-radius: 8px;
     padding: 6px 0;
 }
 
 .cell {
     height: 58px;
-    border: 1px solid #ddd;
+    border: 3px solid #ddd;
     border-radius: 10px;
-    background: #ffffff;
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
     cursor: pointer;
-    transition: border-color .15s, transform .05s;
+    background: linear-gradient(to bottom, #ffffff, #d8d8d8);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    transform-origin: center center;
 }
 
 .cell:hover {
-    border-color: #caa7ff;
+    transform: scale(1.03);
+    box-shadow: 0px 5px 15px rgb(58, 58, 58);
 }
 
 .cell.hoy {
@@ -68,8 +70,8 @@ button:hover {
 }
 
 .cell.fire {
-    background: #fdf5fd;
-    border-color: #e8d0ff;
+    background: #ffd884;
+    border-color: #ff9822;
     cursor: pointer;
 }
 

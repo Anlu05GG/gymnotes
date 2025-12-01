@@ -24,8 +24,12 @@ h2 {
 
 input, select {
     padding: 8px 10px;
-    border: 1px solid #bdbdbd;
+    border: 2px solid #bdbdbd;
     border-radius: 6px;
+}
+
+select:hover {
+    border-color: rgb(36, 56, 233);
 }
 
 .input {
@@ -33,12 +37,7 @@ input, select {
 }
 
 label {
-    color: #ffffff;
-    text-shadow:
-    1px 1px 0 #000,
-    -1px 1px 0 #000,
-    1px -1px 0 #000,
-    -1px -1px 0 #000;
+    font-weight: 500;
 }
 
 button { 
@@ -69,29 +68,15 @@ button:hover {
     grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
 }
 
-.card {
-    background: #ffffff;
-    border: 1px solid #e0e0e0;
-    border-radius: 10px;
-    padding: 12px;
-    box-shadow: 5px 5px 10px #000000;
-    justify-items: center;
-}
-
 ul {
     margin: 0 30px 8px 0;
 }
 
 p {
-    color: #ffffff;
-    text-shadow:
-    1px 1px 0 #000,
-    -1px 1px 0 #000,
-    1px -1px 0 #000,
-    -1px -1px 0 #000;
+    font-weight: 500;
 }
 
 .auto-input {
   flex: auto;
-  max-width: 280px;
+  max-width: 393px;
 }

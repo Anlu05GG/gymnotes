@@ -59,4 +59,10 @@ export class SesionDetalleComponent implements OnInit{
       })
     })
   }
+
+  // Volver a calendario
+  volver() {
+    this.router.navigate(['/calendario'])
+  }
+
 }

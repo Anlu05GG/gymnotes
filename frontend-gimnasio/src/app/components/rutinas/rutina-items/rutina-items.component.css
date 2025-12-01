@@ -24,8 +24,12 @@ h2 {
 
 input, select {
     padding: 8px 10px;
-    border: 1px solid #bbbbbb;
+    border: 2px solid #bbbbbb;
     border-radius: 6px;
+}
+
+select:hover {
+    border-color: rgb(36, 56, 233);
 }
 
 .input {
@@ -33,12 +37,7 @@ input, select {
 }
 
 label {
-    color: #ffffff;
-    text-shadow:
-    1px 1px 0 #000,
-    -1px 1px 0 #000,
-    1px -1px 0 #000,
-    -1px -1px 0 #000;
+    font-weight: 500;
 }
 
 .btn {
@@ -76,10 +75,17 @@ li {
     align-items: center;
     justify-content: space-between;
     gap: 10px;
-    background: #ffffff;
+    background: linear-gradient(to bottom, #ffffff, #dae7ff);
     border: 1px solid #dddddd;
     border-radius: 10px;
     padding: 10px 12px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    transform-origin: center center;
+}
+
+li:hover {
+    transform: scale(1.03);
+    box-shadow: 0px 5px 15px rgb(58, 58, 58);
 }
 
 .remove {
@@ -106,5 +112,5 @@ p {
 
 .auto-input {
   flex: auto;
-  max-width: 280px;
+  max-width: 431px;
 }

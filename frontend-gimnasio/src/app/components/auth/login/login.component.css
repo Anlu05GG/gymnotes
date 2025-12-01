@@ -36,7 +36,7 @@ input{
 
 input:focus{
     outline: none;
-    border-color: #8c00ff;
+    border-color: #002fff;
 }
 
 .btn{
@@ -65,6 +65,10 @@ input:focus{
     padding: 6px 10px;
     border-radius: 6px;
     cursor: pointer;
+}
+
+.link:hover {
+    background: #c9c9c9;
 }
 
 .error{

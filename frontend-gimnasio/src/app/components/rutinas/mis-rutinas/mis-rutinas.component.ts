@@ -29,7 +29,8 @@ export class MisRutinasComponent implements OnInit {
     this.cargar()
   }
 
-  cargar() {
+  // Carga rutinas del usuario
+  private cargar() {
     this.cargando = true
     this.rutinaService.listarPorUsuario(this.usuarioId).subscribe({
       next: rs => { this.rutinas = rs; this.cargando = false },
@@ -37,22 +38,25 @@ export class MisRutinasComponent implements OnInit {
     })
   }
 
+  // Crear nueva rutina
   crear() {
-    if (!this.nombreNueva.trim()) return;
+    if (!this.nombreNueva.trim()) return
     this.rutinaService.crearRutina(this.nombreNueva.trim(), this.usuarioId).subscribe({
       next: _ => { this.nombreNueva = ''; this.cargar() },
       error: e => { this.error = e.message || 'No se pudo crear la rutina' }
     })
   }
 
+  // Borrar una rutina
   borrar(r: Rutina) {
-    if (!confirm(`¿Borrar rutina "${ r.nombre }"?`)) return;
+    if (!confirm(`¿Borrar rutina "${ r.nombre }"?`)) return
     this.rutinaService.borrarRutina(r.id).subscribe({
       next: _ => this.cargar(),
       error: e => this.error = e.message || 'No se pudo borrar la rutina'
     })
   }
 
+  // Navega a la pantalla detallada de la rutina
   ver(r: Rutina) {
     this.router.navigate(['/rutinas', r.id], {state: {rutinaNombre: r.nombre}})
   }

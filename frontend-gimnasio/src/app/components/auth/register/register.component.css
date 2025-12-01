@@ -1,11 +1,11 @@
-:host{
+:host {
     display: block;
     max-width: 520px;
     margin: 24px auto;
     padding-top: 10%;
 }
 
-h2{
+h2 {
     margin: 0 0 12px;
     color: #ffffff;
     text-shadow:
@@ -15,18 +15,18 @@ h2{
     -1px -1px 0 #000;
 }
 
-form{
+form {
     background: #ffffff;
     border: 1px solid #dddddd;
     border-radius: 10px;
     padding: 16px 14px;
 }
 
-label{
+label {
     font-weight: 600;
 }
 
-input{
+input {
     width: 100%;
     padding: 8px 10px;
     border: 1px solid #bbbbbb;
@@ -34,12 +34,12 @@ input{
     box-sizing: border-box;
 }
 
-input:focus{
+input:focus {
     outline: none;
-    border-color: #8c00ff;
+    border-color: #002fff;
 }
 
-.btn{
+.btn {
     background-color: #444444;
     color: #ffffff;
     border: none;
@@ -48,16 +48,16 @@ input:focus{
     cursor: pointer;
 }
 
-.btn:hover{
+.btn:hover {
     background-color: #666666;
 }
 
-.btn[disabled]{
+.btn[disabled] {
     opacity: .6;
     cursor: not-allowed;
 }
 
-.link{
+.link {
     margin-top: 8px;
     background: #dddcdc;
     color: #222222;
@@ -67,7 +67,11 @@ input:focus{
     cursor: pointer;
 }
 
-.error{
+.link:hover {
+    background: #c9c9c9;
+}
+
+.error {
     color: #b00020;
     margin: 8px;
 }

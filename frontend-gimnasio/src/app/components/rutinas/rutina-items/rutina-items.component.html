@@ -1,6 +1,7 @@
 <h2>Ejercicios de la rutina: {{ rutinaNombre }}</h2>
 <div *ngIf="error">{{ error }}</div>
 
+<!-- Barra de filtros -->
 <div class="toolbar">
   <input type="text" class="auto-input" placeholder="Buscar ejercicio..." [(ngModel)]="q" (ngModelChange)="filtrar()" [matAutocomplete]="auto">
 
@@ -16,7 +17,7 @@
   <button class="btn clean" type="button" (click)="limpiarFiltros()">Limpiar</button>
 </div>
 
-
+<!-- Añadir items -->
 <div class="toolbar">
   <label for="series"><small>Series:</small></label>
   <input id="series" type="number" class="input" [(ngModel)]="series" min="1" (keydown.enter)="add()">
@@ -30,6 +31,7 @@
 
 <hr>
 
+<!-- Listado de ejercicios -->
 <ul *ngIf="items.length; else vacio">
   <li *ngFor="let it of items">
     <strong>#{{ it.orden }}</strong>

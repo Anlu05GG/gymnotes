@@ -1,10 +1,13 @@
 <div class="cal">
+
+  <!-- CABECERA CON MES Y BOTONES DE NAVEGACIÓN -->
   <div class="top">
     <button (click)="anteriorMes()">‹</button>
     <div>{{ meses[mes0] }} {{ anio }}</div>
     <button (click)="siguienteMes()">›</button>
   </div>
 
+  <!-- CABECERA DE DÍAS DE LA SEMANA -->
   <div class="grid">
     <div class="head">L</div>
     <div class="head">M</div>
@@ -14,6 +17,7 @@
     <div class="head">S</div>
     <div class="head">D</div>
 
+    <!-- CELDAS DE DÍAS -->
     <ng-container *ngFor="let semana of semanas">
       <ng-container *ngFor="let dia of semana">
         <div class="cell" [class.hoy]="dia.iso === hoyISO" [class.fire]="dia.entreno" (click)="abrirDia(dia)">
@@ -23,4 +27,5 @@
       </ng-container>
     </ng-container>
   </div>
+  
 </div>

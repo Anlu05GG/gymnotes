@@ -52,6 +52,7 @@ export class RutinaItemsComponent implements OnInit {
     this.ejercicioService.listarGrupos().subscribe(gs => this.grupos = gs)
   }
 
+  // Normalizamos texto
   private norm(s: string = ''): string {
     return s
       .toLowerCase()
@@ -60,6 +61,7 @@ export class RutinaItemsComponent implements OnInit {
       .replace(/__enie__/g, 'ñ')
   }
 
+  // Filtra la lista por texto y grupo muscular
   filtrar() {
     let qn = this.norm(this.q.trim())
     let g  = this.grupoSel
@@ -70,17 +72,18 @@ export class RutinaItemsComponent implements OnInit {
     })
   }
 
-  limpiarFiltros() {
-    this.q = ''; this.grupoSel = ''; this.filtrar()
-  }
+  // Limpia filtros de texto y grupo muscular
+  limpiarFiltros() { this.q = ''; this.grupoSel = ''; this.filtrar() }
 
-  cargar() {
+  // Cargar los ejercicios de la rutina
+  private cargar() {
     this.rutinaService.listarItems(this.rutinaId).subscribe({
       next: its => this.items = its.sort((a,b) => a.orden - b.orden),
       error: _ => this.error = 'No se pudieron cargar los ejercicios de la rutina'
     })
   }
 
+  // Añadir nuevo ejercicio a la rutina
   add() {
     if (!this.ejercicioId || this.series < 1 || this.reps < 1) return
     this.rutinaService.addItem(this.rutinaId, this.ejercicioId, this.series, this.reps).subscribe({
@@ -92,6 +95,7 @@ export class RutinaItemsComponent implements OnInit {
     })
   }
 
+  // Eliminar ejercicio de la rutina
   quitar(item: RutinaItemDTO) {
     let nombre = item.ejercicioNombre
       ?? this.todos.find(e => e.id === item.ejercicioId)?.nombre
@@ -105,10 +109,12 @@ export class RutinaItemsComponent implements OnInit {
     })
   }
 
+  // Volver a pantalla de rutinas
   volver() {
     this.router.navigate(['/mis-rutinas'])
   }
 
+  // Selecciona un ejercicio en el autocomplete
   seleccionar(nombre: string) {
     const encontrado = this.opciones.find(e => e.nombre == nombre)
     

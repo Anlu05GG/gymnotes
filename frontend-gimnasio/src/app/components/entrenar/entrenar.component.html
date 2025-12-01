@@ -1,5 +1,6 @@
 <h2>Entrenar hoy 💪</h2>
 
+<!-- Barra de filtros -->
 <div class="toolbar">
   <input type="text" class="auto-input" placeholder="Buscar ejercicio..." [(ngModel)]="q" (ngModelChange)="filtrar()" [matAutocomplete]="auto">
 
@@ -15,6 +16,7 @@
   <button class="btn clean" type="button" (click)="limpiarFiltros()">Limpiar</button>
 </div>
 
+<!-- Añadir series -->
 <div class="toolbar">
   <label for="peso"><small>Peso:</small></label>
   <input id="peso" class="input" type="number" [(ngModel)]="peso" min="0" step="2.5" (keydown.enter)="add()">
@@ -27,6 +29,7 @@
 
 <hr>
 
+<!-- Listado de series agrupado por ejercicio -->
 <ng-container *ngIf="gruposSeries.length; else vacio">
   <div class="grid">
     <div class="card" *ngFor="let g of gruposSeries">

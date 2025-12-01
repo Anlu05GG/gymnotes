@@ -55,6 +55,7 @@ export class EntrenarComponent implements OnInit {
     })
   }
 
+  // Normalizamos texto
   private norm(s: string = ''): string {
     return s.toLowerCase()
       .replace(/ñ/g, '__enie__')
@@ -62,6 +63,7 @@ export class EntrenarComponent implements OnInit {
       .replace(/__enie__/g, 'ñ')
   }
 
+  // Filtra la lista por texto y grupo muscular
   filtrar() {
     const qn = this.norm(this.q.trim())
     const g  = this.grupoSel
@@ -72,8 +74,10 @@ export class EntrenarComponent implements OnInit {
     })
   }
 
+  // Limpia filtros de texto y grupo muscular
   limpiarFiltros() { this.q=''; this.grupoSel=''; this.filtrar() }
 
+  // Agrupa series por ejercicio
   private agruparSeriesPorEjercicio(series: Serie[], ejercicios: Ejercicio[]): Grupo[] {
     const mapa = new Map<number, Serie[]>()
     for (const s of series) {
@@ -87,13 +91,15 @@ export class EntrenarComponent implements OnInit {
     }))
   }
 
-  cargarSeries() {
+  // Carga las series de la sesión actual
+  private cargarSeries() {
     this.entrenarService.listarSeries(this.sesionId).subscribe(s => {
       this.series = s
       this.gruposSeries = this.agruparSeriesPorEjercicio(this.series, this.todos)
     })
   }
 
+  // Añade nueva serie al ejercicio elegido
   add() {
     if (!this.ejercicioId) return
     this.entrenarService.agregarSerie(this.sesionId, this.ejercicioId, this.reps, this.peso).subscribe(_ => {
@@ -101,6 +107,7 @@ export class EntrenarComponent implements OnInit {
     })
   }
 
+  // Selecciona un ejercicio en el autocomplete
   seleccionar(nombre: string) {
     const encontrado = this.opciones.find(e => e.nombre == nombre)
     
