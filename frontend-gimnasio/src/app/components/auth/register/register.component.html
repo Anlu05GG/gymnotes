@@ -1,42 +1,105 @@
 <h2>Registrar Usuario</h2>
 
 <form #registerForm="ngForm" (ngSubmit)="submit()">
-
   <!-- USUARIO -->
   <div>
-    <label>Usuario</label><br>
-    <input type="text" [(ngModel)]="form.usuario" name="usuario" #usuarioModel="ngModel" required>
-    <p class="error" *ngIf="usuarioModel.invalid && usuarioModel.touched">El usuario es obligatorio</p>
+    <label>Usuario</label><br />
+    <input
+      type="text"
+      [(ngModel)]="form.usuario"
+      name="usuario"
+      #usuarioModel="ngModel"
+      required
+    />
+    <p class="error" *ngIf="usuarioModel.invalid && usuarioModel.touched">
+      El usuario es obligatorio
+    </p>
   </div>
 
   <!-- EMAIL -->
-  <div style="margin-top:8px">
-    <label>Email</label><br>
-    <input type="email" [(ngModel)]="form.email" name="email" #emailModel="ngModel" required email>
-    <p class="error" *ngIf="emailModel.errors?.['required'] && emailModel.touched">El email es obligatorio</p>
-    <p class="error" *ngIf="emailModel.errors?.['email'] && emailModel.touched">Debe ser un email válido</p>
+  <div style="margin-top: 8px">
+    <label>Email</label><br />
+    <input
+      type="email"
+      [(ngModel)]="form.email"
+      name="email"
+      #emailModel="ngModel"
+      required
+      email
+    />
+    <p
+      class="error"
+      *ngIf="emailModel.errors?.['required'] && emailModel.touched"
+    >
+      El email es obligatorio
+    </p>
+    <p class="error" *ngIf="emailModel.errors?.['email'] && emailModel.touched">
+      Debe ser un email válido
+    </p>
   </div>
 
   <!-- CONTRASEÑA -->
-  <div style="margin-top:8px">
-    <label>Contraseña</label><br>
-    <input type="password" [(ngModel)]="form.password" name="password" #passwordModel="ngModel" required [pattern]="passwordPattern" minlength="6">
-    <p class="error" *ngIf="passwordModel.errors?.['required'] && passwordModel.touched">La contraseña es obligatoria</p>
-    <p class="error" *ngIf="passwordModel.errors?.['pattern'] && passwordModel.touched">Debe tener al menos una mayúscula, una minúscula y un número (mínimo 6 caracteres)</p>
+  <div style="margin-top: 8px">
+    <label>Contraseña</label><br />
+    <input
+      type="password"
+      [(ngModel)]="form.password"
+      name="password"
+      #passwordModel="ngModel"
+      required
+      [pattern]="passwordPattern"
+      minlength="6"
+    />
+    <p
+      class="error"
+      *ngIf="passwordModel.errors?.['required'] && passwordModel.touched"
+    >
+      La contraseña es obligatoria
+    </p>
+    <p
+      class="error"
+      *ngIf="passwordModel.errors?.['pattern'] && passwordModel.touched"
+    >
+      Debe tener al menos una mayúscula, una minúscula y un número (mínimo 6
+      caracteres)
+    </p>
   </div>
 
   <!-- REPETIR CONTRASEÑA -->
-  <div style="margin-top:8px">
-    <label>Repite la contraseña</label><br>
-    <input type="password" [(ngModel)]="password2" name="password2" #password2Model="ngModel" required>
-    <p class="error" *ngIf="password2Model.touched && form.password && password2 && form.password !== password2">Las contraseñas no coinciden</p>
+  <div style="margin-top: 8px">
+    <label>Repite la contraseña</label><br />
+    <input
+      type="password"
+      [(ngModel)]="password2"
+      name="password2"
+      #password2Model="ngModel"
+      required
+    />
+    <p
+      class="error"
+      *ngIf="
+        password2Model.touched &&
+        form.password &&
+        password2 &&
+        form.password !== password2
+      "
+    >
+      Las contraseñas no coinciden
+    </p>
   </div>
 
   <!-- BOTÓN ENVIAR -->
-  <button class="btn" type="submit" style="margin-top: 10px;" [disabled]="loading || registerForm.invalid || form.password !== password2"> Registrarse</button>
-  <p class="error" *ngIf="error" style="margin-top: 8px;">{{ error }}</p>
-
-</form><br>
+  <button
+    class="btn"
+    type="submit"
+    style="margin-top: 10px"
+    [disabled]="loading || registerForm.invalid || form.password !== password2"
+  >
+    Registrarse
+  </button>
+  <p class="error" *ngIf="error" style="margin-top: 8px">{{ error }}</p>
+</form>
+<br />
 
 <!-- BOTÓN IR A LOGIN -->
 <button class="link" routerLink="/login">¿Ya tienes cuenta?</button>

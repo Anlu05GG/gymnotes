@@ -7,16 +7,15 @@ import { Router, RouterModule } from '@angular/router';
   standalone: true,
   imports: [RouterModule],
   templateUrl: './header.component.html',
-  styleUrl: './header.component.css'
+  styleUrl: './header.component.css',
 })
 export class HeaderComponent implements OnInit {
-
-  nombre: string | null = null
+  nombre: string | null = null;
 
   constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit(): void {
-    this.nombre = this.authService.getCurrentUser()?.usuario ?? null
+    this.nombre = this.authService.getCurrentUser()?.usuario ?? null;
   }
 
   // Cerrar sesión
@@ -24,5 +23,4 @@ export class HeaderComponent implements OnInit {
     this.authService.logout();
     this.router.navigate(['/login']);
   }
-
 }

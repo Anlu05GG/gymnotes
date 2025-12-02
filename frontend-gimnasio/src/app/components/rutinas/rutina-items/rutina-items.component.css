@@ -1,112 +1,109 @@
 :host {
-    display: block;
-    max-width: 900px;
-    margin: 22px auto;
+  display: block;
+  max-width: 900px;
+  margin: 22px auto;
 }
 
 h2 {
-    margin: 0 0 12px;
-    color: #ffffff;
-    text-shadow:
-    1px 1px 0 #000,
-    -1px 1px 0 #000,
-    1px -1px 0 #000,
+  margin: 0 0 12px;
+  color: #ffffff;
+  text-shadow: 1px 1px 0 #000, -1px 1px 0 #000, 1px -1px 0 #000,
     -1px -1px 0 #000;
 }
 
 .toolbar {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-    align-items: center;
-    margin-bottom: 8px;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: 8px;
 }
 
-input, select {
-    padding: 8px 10px;
-    border: 2px solid #bbbbbb;
-    border-radius: 6px;
+input,
+select {
+  padding: 8px 10px;
+  border: 2px solid #bbbbbb;
+  border-radius: 6px;
 }
 
 select:hover {
-    border-color: rgb(36, 56, 233);
+  border-color: rgb(36, 56, 233);
 }
 
 .input {
-    max-width: 64px;
+  max-width: 64px;
 }
 
 label {
-    font-weight: 500;
+  font-weight: 500;
 }
 
 .btn {
-    background: #444444;
-    color: #ffffff;
-    border: none;
-    padding: 8px 12px;
-    border-radius: 6px;
-    cursor: pointer;
+  background: #444444;
+  color: #ffffff;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
 }
 
 .btn:hover {
-    background: #666666;
+  background: #666666;
 }
 
-.btn.clean, .btn.back {
-    background: #eeeeee;
-    color: #222222;
+.btn.clean,
+.btn.back {
+  background: #eeeeee;
+  color: #222222;
 }
 
-.btn.clean:hover, .btn.back:hover {
-    background: #dddddd;
+.btn.clean:hover,
+.btn.back:hover {
+  background: #dddddd;
 }
 
 ul {
-    list-style: none;
-    padding: 0;
-    margin: 12px 0 0;
-    display: grid;
-    gap: 10px;
+  list-style: none;
+  padding: 0;
+  margin: 12px 0 0;
+  display: grid;
+  gap: 10px;
 }
 
 li {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 10px;
-    background: linear-gradient(to bottom, #ffffff, #dae7ff);
-    border: 1px solid #dddddd;
-    border-radius: 10px;
-    padding: 10px 12px;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-    transform-origin: center center;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  background: linear-gradient(to bottom, #ffffff, #dae7ff);
+  border: 1px solid #dddddd;
+  border-radius: 10px;
+  padding: 10px 12px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transform-origin: center center;
 }
 
 li:hover {
-    transform: scale(1.03);
-    box-shadow: 0px 5px 15px rgb(58, 58, 58);
+  transform: scale(1.03);
+  box-shadow: 0px 5px 15px rgb(58, 58, 58);
 }
 
 .remove {
-    border: none;
-    border-radius: 999px;
-    padding: 6px 10px;
-    cursor: pointer;
-    background: #ffe5e5;
-    color: #a00;
+  border: none;
+  border-radius: 999px;
+  padding: 6px 10px;
+  cursor: pointer;
+  background: #ffe5e5;
+  color: #a00;
 }
 
 .remove:hover {
-    background: #ffd6d6;
+  background: #ffd6d6;
 }
 
 p {
-    color: #ffffff;
-    text-shadow:
-    1px 1px 0 #000,
-    -1px 1px 0 #000,
-    1px -1px 0 #000,
+  color: #ffffff;
+  text-shadow: 1px 1px 0 #000, -1px 1px 0 #000, 1px -1px 0 #000,
     -1px -1px 0 #000;
 }
 

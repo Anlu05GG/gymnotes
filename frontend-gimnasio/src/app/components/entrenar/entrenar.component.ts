@@ -7,7 +7,7 @@ import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { MatAutocompleteModule  } from '@angular/material/autocomplete';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
 
@@ -16,26 +16,32 @@ type Grupo = { ejercicioId: number; nombre?: string; series: Serie[] };
 @Component({
   selector: 'app-entrenar',
   standalone: true,
-  imports: [CommonModule, FormsModule, MatFormFieldModule, MatInputModule, MatAutocompleteModule, MatDialogModule],
+  imports: [
+    CommonModule,
+    FormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatAutocompleteModule,
+    MatDialogModule,
+  ],
   templateUrl: './entrenar.component.html',
-  styleUrl: './entrenar.component.css'
+  styleUrl: './entrenar.component.css',
 })
 export class EntrenarComponent implements OnInit {
+  usuarioId!: number;
+  sesionId!: number;
 
-  usuarioId!: number
-  sesionId!: number
+  private todos: Ejercicio[] = [];
+  opciones: Ejercicio[] = [];
+  grupos: string[] = [];
+  q = '';
+  grupoSel = '';
 
-  private todos: Ejercicio[] = []
-  opciones: Ejercicio[] = []
-  grupos: string[] = []
-  q = ''
-  grupoSel = ''
-
-  ejercicioId: number | null = null
-  reps = 10
-  peso = 0
-  series: Serie[] = []
-  gruposSeries: Grupo[] = []
+  ejercicioId: number | null = null;
+  reps = 10;
+  peso = 0;
+  series: Serie[] = [];
+  gruposSeries: Grupo[] = [];
 
   constructor(
     private ejercicioService: EjercicioService,
@@ -44,75 +50,92 @@ export class EntrenarComponent implements OnInit {
     private router: Router,
     private dialog: MatDialog
   ) {}
-  
+
   ngOnInit(): void {
-    const u = this.auth.getCurrentUser()
-    if (!u?.id) { this.router.navigate(['/login']); return}
-    this.usuarioId = u.id
+    const u = this.auth.getCurrentUser();
+    if (!u?.id) {
+      this.router.navigate(['/login']);
+      return;
+    }
+    this.usuarioId = u.id;
 
-    this.ejercicioService.listarEjercicios().subscribe(r => {
-      this.todos = r
-      this.filtrar()
-    })
+    this.ejercicioService.listarEjercicios().subscribe((r) => {
+      this.todos = r;
+      this.filtrar();
+    });
 
-    this.ejercicioService.listarGrupos().subscribe(gs => this.grupos = gs)
+    this.ejercicioService.listarGrupos().subscribe((gs) => (this.grupos = gs));
 
-    this.entrenarService.crearSesion(this.usuarioId).subscribe(s => {
-      this.sesionId = s.id
-      this.cargarSeries()
-    })
+    this.entrenarService.crearSesion(this.usuarioId).subscribe((s) => {
+      this.sesionId = s.id;
+      this.cargarSeries();
+    });
   }
 
   // Normalizamos texto
   private norm(s: string = ''): string {
-    return s.toLowerCase()
+    return s
+      .toLowerCase()
       .replace(/ñ/g, '__enie__')
-      .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
-      .replace(/__enie__/g, 'ñ')
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .replace(/__enie__/g, 'ñ');
   }
 
   // Filtra la lista por texto y grupo muscular
   filtrar() {
-    const qn = this.norm(this.q.trim())
-    const g  = this.grupoSel
-    this.opciones = this.todos.filter(e => {
-      const coincideTexto = !qn || this.norm(e.nombre).includes(qn)
-      const coincideGrupo = !g  || e.grupoMuscular === g
-      return coincideTexto && coincideGrupo
-    })
+    const qn = this.norm(this.q.trim());
+    const g = this.grupoSel;
+    this.opciones = this.todos.filter((e) => {
+      const coincideTexto = !qn || this.norm(e.nombre).includes(qn);
+      const coincideGrupo = !g || e.grupoMuscular === g;
+      return coincideTexto && coincideGrupo;
+    });
   }
 
   // Limpia filtros de texto y grupo muscular
-  limpiarFiltros() { this.q=''; this.grupoSel=''; this.filtrar() }
+  limpiarFiltros() {
+    this.q = '';
+    this.grupoSel = '';
+    this.filtrar();
+  }
 
   // Agrupa series por ejercicio
-  private agruparSeriesPorEjercicio(series: Serie[], ejercicios: Ejercicio[]): Grupo[] {
-    const mapa = new Map<number, Serie[]>()
+  private agruparSeriesPorEjercicio(
+    series: Serie[],
+    ejercicios: Ejercicio[]
+  ): Grupo[] {
+    const mapa = new Map<number, Serie[]>();
     for (const s of series) {
-      if (!mapa.has(s.ejercicioId)) mapa.set(s.ejercicioId, [])
-      mapa.get(s.ejercicioId)!.push(s)
+      if (!mapa.has(s.ejercicioId)) mapa.set(s.ejercicioId, []);
+      mapa.get(s.ejercicioId)!.push(s);
     }
     return Array.from(mapa.entries()).map(([ejercicioId, ser]) => ({
       ejercicioId,
-      nombre: ejercicios.find(e => e.id === ejercicioId)?.nombre,
-      series: ser
-    }))
+      nombre: ejercicios.find((e) => e.id === ejercicioId)?.nombre,
+      series: ser,
+    }));
   }
 
   // Carga las series de la sesión actual
   private cargarSeries() {
-    this.entrenarService.listarSeries(this.sesionId).subscribe(s => {
-      this.series = s
-      this.gruposSeries = this.agruparSeriesPorEjercicio(this.series, this.todos)
-    })
+    this.entrenarService.listarSeries(this.sesionId).subscribe((s) => {
+      this.series = s;
+      this.gruposSeries = this.agruparSeriesPorEjercicio(
+        this.series,
+        this.todos
+      );
+    });
   }
 
   // Añade nueva serie al ejercicio elegido
   add() {
-    if (!this.ejercicioId) return
-    this.entrenarService.agregarSerie(this.sesionId, this.ejercicioId, this.reps, this.peso).subscribe(_ => {
-      this.cargarSeries()
-    })
+    if (!this.ejercicioId) return;
+    this.entrenarService
+      .agregarSerie(this.sesionId, this.ejercicioId, this.reps, this.peso)
+      .subscribe((_) => {
+        this.cargarSeries();
+      });
   }
 
   // Borrar serie
@@ -120,29 +143,27 @@ export class EntrenarComponent implements OnInit {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
       data: {
         title: 'Borrar serie',
-        message: `¿Borrar la serie de ${serie.peso} kg × ${serie.repeticiones} reps?`
-      }
+        message: `¿Borrar la serie de ${serie.peso} kg × ${serie.repeticiones} reps?`,
+      },
     });
 
-    dialogRef.afterClosed().subscribe(confirmado => {
+    dialogRef.afterClosed().subscribe((confirmado) => {
       if (!confirmado) return;
 
       this.entrenarService.borrarSerie(this.sesionId, serie.id).subscribe({
-        next: _ => this.cargarSeries()
+        next: (_) => this.cargarSeries(),
       });
     });
   }
 
   // Selecciona un ejercicio en el autocomplete
   seleccionar(nombre: string) {
-    const encontrado = this.opciones.find(e => e.nombre == nombre)
-    
+    const encontrado = this.opciones.find((e) => e.nombre == nombre);
+
     if (encontrado && encontrado.id != null) {
-      this.ejercicioId = encontrado.id
+      this.ejercicioId = encontrado.id;
     } else {
-      this.ejercicioId = null
+      this.ejercicioId = null;
     }
-
   }
-
 }

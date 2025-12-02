@@ -1,77 +1,74 @@
 :host {
-    display: block;
-    max-width: 520px;
-    margin: 24px auto;
-    padding-top: 10%;
+  display: block;
+  max-width: 520px;
+  margin: 24px auto;
+  padding-top: 10%;
 }
 
 h2 {
-    margin: 0 0 12px;
-    color: #ffffff;
-    text-shadow:
-    1px 1px 0 #000,
-    -1px 1px 0 #000,
-    1px -1px 0 #000,
+  margin: 0 0 12px;
+  color: #ffffff;
+  text-shadow: 1px 1px 0 #000, -1px 1px 0 #000, 1px -1px 0 #000,
     -1px -1px 0 #000;
 }
 
 form {
-    background: #ffffff;
-    border: 1px solid #dddddd;
-    border-radius: 10px;
-    padding: 16px 14px;
+  background: #ffffff;
+  border: 1px solid #dddddd;
+  border-radius: 10px;
+  padding: 16px 14px;
 }
 
 label {
-    font-weight: 600;
+  font-weight: 600;
 }
 
 input {
-    width: 100%;
-    padding: 8px 10px;
-    border: 1px solid #bbbbbb;
-    border-radius: 6px;
-    box-sizing: border-box;
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid #bbbbbb;
+  border-radius: 6px;
+  box-sizing: border-box;
 }
 
 input:focus {
-    outline: none;
-    border-color: #002fff;
+  outline: none;
+  border-color: #002fff;
 }
 
 .btn {
-    background-color: #444444;
-    color: #ffffff;
-    border: none;
-    padding: 8px 12px;
-    border-radius: 6px;
-    cursor: pointer;
+  background-color: #444444;
+  color: #ffffff;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
 }
 
 .btn:hover {
-    background-color: #666666;
+  background-color: #666666;
 }
 
 .btn[disabled] {
-    opacity: .6;
-    cursor: not-allowed;
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 
 .link {
-    margin-top: 8px;
-    background: #dddcdc;
-    color: #222222;
-    border: none;
-    padding: 6px 10px;
-    border-radius: 6px;
-    cursor: pointer;
+  margin-top: 8px;
+  background: #dddcdc;
+  color: #222222;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
 }
 
 .link:hover {
-    background: #c9c9c9;
+  background: #c9c9c9;
 }
 
 .error {
-    color: #b00020;
-    margin: 8px;
+  color: #b00020;
+  margin: 8px;
 }

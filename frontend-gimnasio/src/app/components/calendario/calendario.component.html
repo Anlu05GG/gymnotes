@@ -1,10 +1,9 @@
 <div class="cal">
-
   <!-- CABECERA CON MES Y BOTONES DE NAVEGACIÓN -->
   <div class="top">
-    <button (click)="anteriorMes()">‹</button>
+    <button (click)="anteriorMes()"><</button>
     <div>{{ meses[mes0] }} {{ anio }}</div>
-    <button (click)="siguienteMes()">›</button>
+    <button (click)="siguienteMes()">></button>
   </div>
 
   <!-- CABECERA DE DÍAS DE LA SEMANA -->
@@ -20,12 +19,16 @@
     <!-- CELDAS DE DÍAS -->
     <ng-container *ngFor="let semana of semanas">
       <ng-container *ngFor="let dia of semana">
-        <div class="cell" [class.hoy]="dia.iso === hoyISO" [class.fire]="dia.entreno" (click)="abrirDia(dia)">
+        <div
+          class="cell"
+          [class.hoy]="dia.iso === hoyISO"
+          [class.fire]="dia.entreno"
+          (click)="abrirDia(dia)"
+        >
           <span *ngIf="dia.d">{{ dia.d }}</span>
           <span class="emoji" *ngIf="dia.entreno">🔥</span>
         </div>
       </ng-container>
     </ng-container>
   </div>
-  
 </div>

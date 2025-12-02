@@ -27,31 +27,33 @@ import { MatButtonModule } from '@angular/material/button';
       </mat-dialog-actions>
     </div>
   `,
-  styles: [`
-    .dialog-container {
-      background: linear-gradient(to top, #ffffff, #dadadaff);
-      padding: 16px 20px 20px;
-      border-radius: 12px;
-      box-sizing: border-box;
-    }
+  styles: [
+    `
+      .dialog-container {
+        background: linear-gradient(to top, #ffffff, #dadadaff);
+        padding: 16px 20px 20px;
+        border-radius: 12px;
+        box-sizing: border-box;
+      }
 
-    .dialog-title {
-      margin: 0 0 8px;
-      font-size: 1.2rem;
-      font-weight: 600;
-      color: #1f2937;
-    }
+      .dialog-title {
+        margin: 0 0 8px;
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: #1f2937;
+      }
 
-    .dialog-content p {
-      margin: 0 0 16px;
-      color: #374151;
-      font-size: 0.95rem;
-    }
+      .dialog-content p {
+        margin: 0 0 16px;
+        color: #374151;
+        font-size: 0.95rem;
+      }
 
-    .dialog-actions {
-      gap: 8px;
-    }
-  `]
+      .dialog-actions {
+        gap: 8px;
+      }
+    `,
+  ],
 })
 export class ConfirmDialogComponent {
   constructor(

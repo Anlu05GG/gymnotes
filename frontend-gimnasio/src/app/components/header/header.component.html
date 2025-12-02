@@ -1,17 +1,21 @@
 <header>
+  <div class="logo">
+    <img src="gymnotes-icon.svg" alt="GymNotes logo" />
+    <span>GymNotes</span>
+  </div>
 
-    <div class="logo">
-        <img src="gymnotes-icon.svg" alt="GymNotes logo">
-        <span>GymNotes</span>
-    </div>
+  <div class="welcome">
+    👋 <u>¡Bienvenido, {{ nombre }}!</u> 😉
+  </div>
 
-    <div class="welcome">👋 <u>¡Bienvenido, {{ nombre }}!</u> 😉</div>
-
-    <nav>
-        <button routerLink="/entrenar" routerLinkActive="active">🏠 Inicio</button>
-        <button routerLink="/mis-rutinas" routerLinkActive="active">❤️‍🔥 Mis rutinas</button>
-        <button routerLink="/calendario" routerLinkActive="active">🗓️ Calendario</button>
-        <button class="salir" (click)="salir()">🔒 Cerrar sesión</button>
-    </nav>
-
+  <nav>
+    <button routerLink="/entrenar" routerLinkActive="active">🏠 Inicio</button>
+    <button routerLink="/mis-rutinas" routerLinkActive="active">
+      ❤️‍🔥 Mis rutinas
+    </button>
+    <button routerLink="/calendario" routerLinkActive="active">
+      🗓️ Calendario
+    </button>
+    <button class="salir" (click)="salir()">🔒 Cerrar sesión</button>
+  </nav>
 </header>

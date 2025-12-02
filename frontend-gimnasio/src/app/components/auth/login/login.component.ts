@@ -9,27 +9,25 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [FormsModule, CommonModule, RouterModule],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+  styleUrl: './login.component.css',
 })
 export class LoginComponent {
-
-  form: LoginRequest = { email: '', password: '' }
-  loading = false
-  error : string = ''
+  form: LoginRequest = { email: '', password: '' };
+  loading = false;
+  error: string = '';
 
   constructor(private authService: AuthService, private router: Router) {}
 
   submit() {
-    this.error = ''
-    this.loading = true
+    this.error = '';
+    this.loading = true;
 
     this.authService.login(this.form).subscribe({
-      next: _ => this.router.navigate(['/entrenar']),
-      error: err => {
-        this.error = err?.error?.error ?? 'Error al iniciar sesión'
-        this.loading = false
-      }
-    })
+      next: (_) => this.router.navigate(['/entrenar']),
+      error: (err) => {
+        this.error = err?.error?.error ?? 'Error al iniciar sesión';
+        this.loading = false;
+      },
+    });
   }
-
 }

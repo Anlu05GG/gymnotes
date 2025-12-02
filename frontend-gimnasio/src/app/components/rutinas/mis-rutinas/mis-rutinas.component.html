@@ -4,11 +4,18 @@
 
 <!-- Escribir nombre de nueva rutina -->
 <div class="toolbar">
-  <input type="text" [(ngModel)]="nombreNueva" (keydown.enter)="crear()" placeholder="Nombre de la rutina">
-  <button class="btn" (click)="crear()"  [disabled]="!nombreNueva.trim()">Crear</button>
+  <input
+    type="text"
+    [(ngModel)]="nombreNueva"
+    (keydown.enter)="crear()"
+    placeholder="Nombre de la rutina"
+  />
+  <button class="btn" (click)="crear()" [disabled]="!nombreNueva.trim()">
+    Crear
+  </button>
 </div>
 
-<hr>
+<hr />
 
 <!-- Listado de rutinas del usuario -->
 <ul *ngIf="rutinas.length; else vacio">
