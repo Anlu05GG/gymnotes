@@ -36,6 +36,10 @@ export class EntrenarService {
     return this.http.post<Sesion>(`${this.apiUrl}?usuarioId=${usuarioId}`, {})
   }
 
+  borrarSerie(sesionId: number, serieId: number): Observable<void> {
+  return this.http.delete<void>(`${this.apiUrl}/${sesionId}/series/${serieId}`)
+  }
+
   listarSesiones(usuarioId: number): Observable<Sesion[]> {
     return this.http.get<Sesion[]>(`${this.apiUrl}?usuarioId=${usuarioId}`)
   }

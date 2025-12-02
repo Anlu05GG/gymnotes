@@ -8,13 +8,15 @@ import { Router } from '@angular/router';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatAutocompleteModule  } from '@angular/material/autocomplete';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
 
 type Grupo = { ejercicioId: number; nombre?: string; series: Serie[] };
 
 @Component({
   selector: 'app-entrenar',
   standalone: true,
-  imports: [CommonModule, FormsModule, MatFormFieldModule, MatInputModule, MatAutocompleteModule],
+  imports: [CommonModule, FormsModule, MatFormFieldModule, MatInputModule, MatAutocompleteModule, MatDialogModule],
   templateUrl: './entrenar.component.html',
   styleUrl: './entrenar.component.css'
 })
@@ -35,7 +37,13 @@ export class EntrenarComponent implements OnInit {
   series: Serie[] = []
   gruposSeries: Grupo[] = []
 
-  constructor(private ejercicioService: EjercicioService, private entrenarService: EntrenarService, private auth: AuthService, private router: Router) {}
+  constructor(
+    private ejercicioService: EjercicioService,
+    private entrenarService: EntrenarService,
+    private auth: AuthService,
+    private router: Router,
+    private dialog: MatDialog
+  ) {}
   
   ngOnInit(): void {
     const u = this.auth.getCurrentUser()
@@ -105,6 +113,24 @@ export class EntrenarComponent implements OnInit {
     this.entrenarService.agregarSerie(this.sesionId, this.ejercicioId, this.reps, this.peso).subscribe(_ => {
       this.cargarSeries()
     })
+  }
+
+  // Borrar serie
+  borrarSerie(serie: Serie) {
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      data: {
+        title: 'Borrar serie',
+        message: `¿Borrar la serie de ${serie.peso} kg × ${serie.repeticiones} reps?`
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(confirmado => {
+      if (!confirmado) return;
+
+      this.entrenarService.borrarSerie(this.sesionId, serie.id).subscribe({
+        next: _ => this.cargarSeries()
+      });
+    });
   }
 
   // Selecciona un ejercicio en el autocomplete

@@ -4,11 +4,13 @@ import { AuthService } from '../../../services/auth.service';
 import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { ConfirmDialogComponent } from '../../confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-mis-rutinas',
   standalone: true,
-  imports: [CommonModule, RouterModule, FormsModule],
+  imports: [CommonModule, RouterModule, FormsModule, MatDialogModule],
   templateUrl: './mis-rutinas.component.html',
   styleUrl: './mis-rutinas.component.css'
 })
@@ -20,7 +22,7 @@ export class MisRutinasComponent implements OnInit {
   cargando = false
   error = ''
 
-  constructor(private rutinaService: RutinaService, private authService: AuthService, private router: Router) {}
+  constructor(private rutinaService: RutinaService, private authService: AuthService, private router: Router, private dialog: MatDialog) {}
 
   ngOnInit(): void {
     let u = this.authService.getCurrentUser()
@@ -49,10 +51,22 @@ export class MisRutinasComponent implements OnInit {
 
   // Borrar una rutina
   borrar(r: Rutina) {
-    if (!confirm(`¿Borrar rutina "${ r.nombre }"?`)) return
-    this.rutinaService.borrarRutina(r.id).subscribe({
-      next: _ => this.cargar(),
-      error: e => this.error = e.message || 'No se pudo borrar la rutina'
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      data: {
+        title: 'Borrar rutina',
+        message: `¿Borrar rutina "${r.nombre}"?`
+      }
+    })
+
+    dialogRef.afterClosed().subscribe(confirmado => {
+      if (!confirmado) {
+        return
+      }
+
+      this.rutinaService.borrarRutina(r.id).subscribe({
+        next: _ => this.cargar(),
+        error: e => this.error = e.message || 'No se pudo borrar la rutina'
+      })
     })
   }
 

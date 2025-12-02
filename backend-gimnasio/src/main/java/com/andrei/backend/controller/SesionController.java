@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -39,6 +40,16 @@ public class SesionController {
         Sesion sesion = sesionService.crearSesion(usuarioId);
         URI location = URI.create("/sesiones/" + sesion.getId());
         return ResponseEntity.created(location).body(sesion);
+    }
+    
+    // Borrar una serie concreta de una sesión
+    @DeleteMapping("/{sesionId}/series/{serieId}")
+    public ResponseEntity<Void> borrarSerie(@PathVariable Long sesionId, @PathVariable Long serieId) {
+        boolean borrada = sesionService.borrarSerie(sesionId, serieId);
+        if (!borrada) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Serie no encontrada");
+        }
+        return ResponseEntity.noContent().build();
     }
 
     // Listar las sesiones

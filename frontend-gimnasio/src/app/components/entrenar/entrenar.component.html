@@ -35,7 +35,12 @@
     <div class="card" *ngFor="let g of gruposSeries">
       <h3>{{ g.nombre || ('Ejercicio ' + g.ejercicioId) }}</h3>
       <ul>
-        <li *ngFor="let s of g.series; let i = index">{{ s.peso }} kg × {{ s.repeticiones }} reps</li>
+        <li *ngFor="let s of g.series; let i = index">
+          {{ s.peso }} kg × {{ s.repeticiones }} reps
+          <button type="button" class="remove" (click)="borrarSerie(s)">
+            ❌
+          </button>
+        </li>
       </ul>
     </div>
   </div>

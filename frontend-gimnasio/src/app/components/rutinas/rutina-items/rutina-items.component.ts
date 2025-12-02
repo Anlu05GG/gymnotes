@@ -7,11 +7,13 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatAutocompleteModule  } from '@angular/material/autocomplete';
 import { FormsModule } from '@angular/forms';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { ConfirmDialogComponent } from '../../confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-rutina-items',
   standalone: true,
-  imports: [CommonModule, FormsModule, MatFormFieldModule, MatInputModule, MatAutocompleteModule],
+  imports: [CommonModule, FormsModule, MatFormFieldModule, MatInputModule, MatAutocompleteModule, MatDialogModule],
   templateUrl: './rutina-items.component.html',
   styleUrl: './rutina-items.component.css'
 })
@@ -33,7 +35,13 @@ export class RutinaItemsComponent implements OnInit {
 
   error = ''
 
-  constructor(private route: ActivatedRoute, private router: Router, private rutinaService: RutinaService, private ejercicioService: EjercicioService) {}
+  constructor(
+    private route: ActivatedRoute, 
+    private router: Router, 
+    private rutinaService: RutinaService, 
+    private ejercicioService: EjercicioService, 
+    private dialog: MatDialog,
+  ) {}
   
 
   ngOnInit(): void {
@@ -101,11 +109,22 @@ export class RutinaItemsComponent implements OnInit {
       ?? this.todos.find(e => e.id === item.ejercicioId)?.nombre
       ?? ('Ejercicio ' + item.ejercicioId)
 
-    if (!confirm(`¿Quitar ${nombre}?`)) return
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      data: {
+        title: 'Borrar serie',
+        message: `¿Borrar serie "${nombre}"?`
+      }
+    })
 
-    this.rutinaService.quitarItem(item.id).subscribe({
-      next: _ => this.cargar(),
-      error: e => this.error = e.message || 'No se pudo borrar el ejercicio'
+    dialogRef.afterClosed().subscribe(confirmado => {
+      if (!confirmado) {
+        return
+      }
+
+      this.rutinaService.quitarItem(item.id).subscribe({
+        next: _ => this.cargar(),
+        error: e => this.error = e.message || 'No se pudo borrar la serie'
+      })
     })
   }
 

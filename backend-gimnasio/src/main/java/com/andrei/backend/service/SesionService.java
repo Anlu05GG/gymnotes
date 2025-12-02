@@ -35,6 +35,22 @@ public class SesionService {
                 });
     }
 	
+	// Borrar una serie de sesión
+    public boolean borrarSerie(Long sesionId, Long serieId) {
+        Optional<Serie> opt = serieRepository.findById(serieId);
+        if (opt.isEmpty()) {
+            return false;
+        }
+
+        Serie s = opt.get();
+        if (!s.getSesionId().equals(sesionId)) {
+            return false;
+        }
+
+        serieRepository.delete(s);
+        return true;
+    }
+	
 	// Lista de sesiones
 	public List<Sesion> listarSesiones(Long usuarioId) {
 		return sesionRepository.findByUsuarioIdOrderByFechaDesc(usuarioId);

@@ -80,3 +80,36 @@ p {
   flex: auto;
   max-width: 393px;
 }
+
+ul li {
+  position: relative;
+  transition: opacity 0.2s ease, transform 0.1s ease;
+}
+
+.remove {
+  background: transparent;
+  color: #e53935;
+  margin-left: 8px;
+  padding: 0 4px;
+  font-size: 0.9rem;
+  border: none;
+  cursor: pointer;
+
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.1s ease;
+}
+
+li:hover {
+    transform: scale(1.15);
+}
+
+ul li:hover .remove {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.remove:hover {
+  transform: scale(1.15);
+  background-color: #ffcece;
+}
