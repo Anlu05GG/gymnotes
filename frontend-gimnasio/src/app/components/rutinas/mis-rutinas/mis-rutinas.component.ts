@@ -53,20 +53,40 @@ export class MisRutinasComponent implements OnInit {
     });
   }
 
+  // Normaliza nombre para comparar
+  private normalizaNombre(nombre: string): string {
+    return nombre.trim().toLowerCase();
+  }
+
+  // Comprueba si ya existe una rutina con ese nombre
+  existeRutinaConNombre(nombre: string): boolean {
+    const n = this.normalizaNombre(nombre);
+    if (!n) return false;
+    return this.rutinas.some(r => this.normalizaNombre(r.nombre) === n);
+  }
+
   // Crear nueva rutina
   crear() {
-    if (!this.nombreNueva.trim()) return;
-    this.rutinaService
-      .crearRutina(this.nombreNueva.trim(), this.usuarioId)
-      .subscribe({
-        next: (_) => {
-          this.nombreNueva = '';
-          this.cargar();
-        },
-        error: (e) => {
-          this.error = e.message || 'No se pudo crear la rutina';
-        },
-      });
+    const nombre = this.nombreNueva.trim();
+    if (!nombre) return;
+
+    // Comprobación solo en front
+    if (this.existeRutinaConNombre(nombre)) {
+      this.error = 'Ya tienes una rutina con ese nombre';
+      return;
+    }
+
+    this.error = '';
+
+    this.rutinaService.crearRutina(nombre, this.usuarioId).subscribe({
+      next: (_) => {
+        this.nombreNueva = '';
+        this.cargar();
+      },
+      error: (e) => {
+        this.error = e.message || 'No se pudo crear la rutina';
+      },
+    });
   }
 
   // Borrar una rutina

@@ -1,19 +1,16 @@
 <h2>Mis rutinas</h2>
 
-<div *ngIf="error">{{ error }}</div>
-
 <!-- Escribir nombre de nueva rutina -->
 <div class="toolbar">
-  <input
-    type="text"
-    [(ngModel)]="nombreNueva"
-    (keydown.enter)="crear()"
-    placeholder="Nombre de la rutina"
-  />
-  <button class="btn" (click)="crear()" [disabled]="!nombreNueva.trim()">
+  <input type="text" [(ngModel)]="nombreNueva" (keydown.enter)="crear()" placeholder="Nombre de la rutina" />
+  <button class="btn" (click)="crear()" [disabled]="!nombreNueva.trim() || existeRutinaConNombre(nombreNueva)">
     Crear
   </button>
 </div>
+
+<p class="error" *ngIf="nombreNueva.trim() && existeRutinaConNombre(nombreNueva)">
+  Ya tienes una rutina con ese nombre
+</p>
 
 <hr />
 

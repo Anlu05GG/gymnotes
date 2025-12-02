@@ -2,28 +2,19 @@
 
 <!-- Barra de filtros -->
 <div class="toolbar">
-  <input
-    type="text"
-    class="auto-input"
-    placeholder="Buscar ejercicio..."
-    [(ngModel)]="q"
-    (ngModelChange)="filtrar()"
-    [matAutocomplete]="auto"
-  />
-
-  <mat-autocomplete
-    #auto="matAutocomplete"
-    (optionSelected)="seleccionar($event.option.value)"
-  >
-    <mat-option *ngFor="let e of opciones" [value]="e.nombre">{{
-      e.nombre
-    }}</mat-option>
-  </mat-autocomplete>
-
   <select [(ngModel)]="grupoSel" (ngModelChange)="filtrar()">
     <option value="">-- Todos los grupos --</option>
     <option *ngFor="let g of grupos" [value]="g">{{ g }}</option>
   </select>
+
+  <input type="text" class="auto-input" placeholder="Buscar ejercicio..." [(ngModel)]="q" (ngModelChange)="filtrar()"
+    [matAutocomplete]="auto" />
+
+  <mat-autocomplete #auto="matAutocomplete" (optionSelected)="seleccionar($event.option.value)">
+    <mat-option *ngFor="let e of opciones" [value]="e.nombre">{{
+      e.nombre
+      }}</mat-option>
+  </mat-autocomplete>
 
   <button class="btn clean" type="button" (click)="limpiarFiltros()">
     Limpiar
@@ -33,25 +24,10 @@
 <!-- Añadir series -->
 <div class="toolbar">
   <label for="peso"><small>Peso:</small></label>
-  <input
-    id="peso"
-    class="input"
-    type="number"
-    [(ngModel)]="peso"
-    min="0"
-    step="2.5"
-    (keydown.enter)="add()"
-  />
+  <input id="peso" class="input" type="number" [(ngModel)]="peso" min="0" step="2.5" (keydown.enter)="add()" />
 
   <label for="reps"><small>Repeticiones:</small></label>
-  <input
-    id="reps"
-    class="input"
-    type="number"
-    [(ngModel)]="reps"
-    min="1"
-    (keydown.enter)="add()"
-  />
+  <input id="reps" class="input" type="number" [(ngModel)]="reps" min="1" (keydown.enter)="add()" />
 
   <button (click)="add()" [disabled]="!ejercicioId || reps < 1 || peso < 0">
     Añadir serie

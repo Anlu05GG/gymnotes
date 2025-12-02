@@ -92,3 +92,9 @@ li:hover {
 p {
   font-weight: 500;
 }
+
+.error {
+  color: #e53935;
+  margin-top: 4px;
+  font-size: 0.9rem;
+}

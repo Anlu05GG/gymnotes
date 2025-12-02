@@ -3,28 +3,19 @@
 
 <!-- Barra de filtros -->
 <div class="toolbar">
-  <input
-    type="text"
-    class="auto-input"
-    placeholder="Buscar ejercicio..."
-    [(ngModel)]="q"
-    (ngModelChange)="filtrar()"
-    [matAutocomplete]="auto"
-  />
-
-  <mat-autocomplete
-    #auto="matAutocomplete"
-    (optionSelected)="seleccionar($event.option.value)"
-  >
-    <mat-option *ngFor="let e of opciones" [value]="e.nombre">{{
-      e.nombre
-    }}</mat-option>
-  </mat-autocomplete>
-
   <select [(ngModel)]="grupoSel" (ngModelChange)="filtrar()">
     <option value="">-- Todos los grupos --</option>
     <option *ngFor="let g of grupos" [value]="g">{{ g }}</option>
   </select>
+
+  <input type="text" class="auto-input" placeholder="Buscar ejercicio..." [(ngModel)]="q" (ngModelChange)="filtrar()"
+    [matAutocomplete]="auto" />
+
+  <mat-autocomplete #auto="matAutocomplete" (optionSelected)="seleccionar($event.option.value)">
+    <mat-option *ngFor="let e of opciones" [value]="e.nombre">{{
+      e.nombre
+      }}</mat-option>
+  </mat-autocomplete>
 
   <button class="btn clean" type="button" (click)="limpiarFiltros()">
     Limpiar
@@ -34,31 +25,12 @@
 <!-- Añadir items -->
 <div class="toolbar">
   <label for="series"><small>Series:</small></label>
-  <input
-    id="series"
-    type="number"
-    class="input"
-    [(ngModel)]="series"
-    min="1"
-    (keydown.enter)="add()"
-  />
+  <input id="series" type="number" class="input" [(ngModel)]="series" min="1" (keydown.enter)="add()" />
 
   <label for="repeticiones"><small>Repeticiones:</small></label>
-  <input
-    id="repeticiones"
-    type="number"
-    class="input"
-    [(ngModel)]="reps"
-    min="1"
-    (keydown.enter)="add()"
-  />
+  <input id="repeticiones" type="number" class="input" [(ngModel)]="reps" min="1" (keydown.enter)="add()" />
 
-  <button
-    class="btn"
-    type="button"
-    (click)="add()"
-    [disabled]="!ejercicioId || series < 1 || reps < 1"
-  >
+  <button class="btn" type="button" (click)="add()" [disabled]="!ejercicioId || series < 1 || reps < 1">
     Añadir
   </button>
   <button class="btn back" type="button" (click)="volver()">Volver</button>
