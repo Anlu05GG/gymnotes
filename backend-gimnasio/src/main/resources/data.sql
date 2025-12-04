@@ -1,8 +1,5 @@
-DELETE FROM ejercicios;
-ALTER TABLE ejercicios AUTO_INCREMENT = 1;
-
 -- PECHO
-INSERT INTO ejercicios (nombre, grupo_muscular, descripcion) VALUES
+INSERT IGNORE INTO ejercicios (nombre, grupo_muscular, descripcion) VALUES
 ('Press de banca plano barra', 'Pecho', 'Pectoral mayor en banco plano con barra'),
 ('Press de banca plano mancuernas', 'Pecho', 'Press plano con mancuernas'),
 ('Press de banca en multipower', 'Pecho', 'Press plano en máquina smith'),
@@ -32,7 +29,7 @@ INSERT INTO ejercicios (nombre, grupo_muscular, descripcion) VALUES
 ('Pullover en polea alta', 'Pecho', 'Pullover de pie con cuerda');
 
 -- ESPALDA
-INSERT INTO ejercicios (nombre, grupo_muscular, descripcion) VALUES
+INSERT IGNORE INTO ejercicios (nombre, grupo_muscular, descripcion) VALUES
 ('Dominadas pronas', 'Espalda', 'Agarre prono para dorsal ancho'),
 ('Dominadas supinas', 'Espalda', 'Agarre supino, más bíceps'),
 ('Dominadas neutras', 'Espalda', 'Agarre neutro, hombros cómodos'),
@@ -58,14 +55,13 @@ INSERT INTO ejercicios (nombre, grupo_muscular, descripcion) VALUES
 ('Pullover en polea de pie', 'Espalda', 'Desde polea alta al muslo'),
 ('Peso muerto convencional', 'Espalda', 'Trabajo global de cadena posterior'),
 ('Peso muerto sumo', 'Espalda', 'Apertura amplia de pies'),
-('Peso muerto rumano barra', 'Espalda', 'Énfasis en isquios y lumbar'),
 ('Peso muerto rumano mancuernas', 'Espalda', 'Rumano con mancuernas'),
 ('Peso muerto piernas rígidas barra', 'Espalda', 'Mayor estiramiento de isquios'),
 ('Peso muerto con trap bar', 'Espalda', 'Con barra hexagonal'),
 ('Remo en máquina sentado pecho apoyado', 'Espalda', 'Remo guiado con apoyo de pecho');
 
 -- HOMBROS
-INSERT INTO ejercicios (nombre, grupo_muscular, descripcion) VALUES
+INSERT IGNORE INTO ejercicios (nombre, grupo_muscular, descripcion) VALUES
 ('Press militar de pie barra', 'Hombros', 'Press por encima de la cabeza'),
 ('Press militar sentado barra', 'Hombros', 'Versión sentada con barra'),
 ('Press militar sentado mancuernas', 'Hombros', 'Mayor libertad de agarre'),
@@ -90,7 +86,7 @@ INSERT INTO ejercicios (nombre, grupo_muscular, descripcion) VALUES
 ('Rotación externa en polea', 'Hombros', 'Trabaja manguito rotador');
 
 -- BÍCEPS
-INSERT INTO ejercicios (nombre, grupo_muscular, descripcion) VALUES
+INSERT IGNORE INTO ejercicios (nombre, grupo_muscular, descripcion) VALUES
 ('Curl bíceps barra recta de pie', 'Bíceps', 'Curl clásico con barra'),
 ('Curl bíceps barra Z de pie', 'Bíceps', 'Menos tensión en muñeca'),
 ('Curl alterno mancuernas de pie', 'Bíceps', 'Alternando brazos de pie'),
@@ -111,7 +107,7 @@ INSERT INTO ejercicios (nombre, grupo_muscular, descripcion) VALUES
 ('Curl en polea alta a una mano', 'Bíceps', 'De perfil, brazo en abducción');
 
 -- TRÍCEPS
-INSERT INTO ejercicios (nombre, grupo_muscular, descripcion) VALUES
+INSERT IGNORE INTO ejercicios (nombre, grupo_muscular, descripcion) VALUES
 ('Press francés barra Z tumbado', 'Tríceps', 'Extensión de codos en banco'),
 ('Press francés mancuernas tumbado', 'Tríceps', 'Unilateral o bilateral'),
 ('Press francés en polea alta con cuerda', 'Tríceps', 'Extensión sobre la cabeza'),
@@ -132,7 +128,7 @@ INSERT INTO ejercicios (nombre, grupo_muscular, descripcion) VALUES
 ('Extensión de tríceps en máquina sentado', 'Tríceps', 'Extensión de codo guiada');
 
 -- PIERNAS
-INSERT INTO ejercicios (nombre, grupo_muscular, descripcion) VALUES
+INSERT IGNORE INTO ejercicios (nombre, grupo_muscular, descripcion) VALUES
 ('Sentadilla trasera barra alta', 'Piernas', 'Barra más alta sobre trapecio'),
 ('Sentadilla trasera barra baja', 'Piernas', 'Barra más baja sobre deltoides'),
 ('Sentadilla frontal barra', 'Piernas', 'Barra sobre la parte frontal del hombro'),
@@ -180,7 +176,7 @@ INSERT INTO ejercicios (nombre, grupo_muscular, descripcion) VALUES
 ('Gemelos a una pierna en escalón', 'Piernas', 'Trabajo unilateral de gemelo');
 
 -- ABDOMEN
-INSERT INTO ejercicios (nombre, grupo_muscular, descripcion) VALUES
+INSERT IGNORE INTO ejercicios (nombre, grupo_muscular, descripcion) VALUES
 ('Crunch en suelo', 'Abdomen', 'Encogimiento básico'),
 ('Crunch en máquina abdominal', 'Abdomen', 'Movimiento guiado'),
 ('Crunch en polea alta', 'Abdomen', 'De rodillas con cuerda'),
@@ -195,7 +191,7 @@ INSERT INTO ejercicios (nombre, grupo_muscular, descripcion) VALUES
 ('Encogimientos en banco declinado', 'Abdomen', 'Crunch en declinado');
 
 -- CORE
-INSERT INTO ejercicios (nombre, grupo_muscular, descripcion) VALUES
+INSERT IGNORE INTO ejercicios (nombre, grupo_muscular, descripcion) VALUES
 ('Plancha frontal en suelo', 'Core', 'Apoyo en antebrazos'),
 ('Plancha frontal con apoyo en banco', 'Core', 'Más fácil, sobre banco'),
 ('Plancha lateral en suelo', 'Core', 'Apoyo lateral en antebrazo'),
@@ -208,7 +204,7 @@ INSERT INTO ejercicios (nombre, grupo_muscular, descripcion) VALUES
 ('Paseo del granjero con mancuernas', 'Core', 'Caminar cargando mancuernas a los lados');
 
 -- ANTEBRAZO
-INSERT INTO ejercicios (nombre, grupo_muscular, descripcion) VALUES
+INSERT IGNORE INTO ejercicios (nombre, grupo_muscular, descripcion) VALUES
 ('Curl de muñeca barra sentado', 'Antebrazo', 'Flexores de muñeca'),
 ('Curl de muñeca inverso barra', 'Antebrazo', 'Extensores de muñeca'),
 ('Curl de muñeca mancuernas', 'Antebrazo', 'Versión unilateral'),
@@ -219,7 +215,7 @@ INSERT INTO ejercicios (nombre, grupo_muscular, descripcion) VALUES
 ('Farmer walk con trap bar', 'Antebrazo', 'Paseo con barra hexagonal');
 
 -- TRAPECIO
-INSERT INTO ejercicios (nombre, grupo_muscular, descripcion) VALUES
+INSERT IGNORE INTO ejercicios (nombre, grupo_muscular, descripcion) VALUES
 ('Encogimientos con barra de pie', 'Trapecio', 'Barra en frente o detrás'),
 ('Encogimientos con mancuernas de pie', 'Trapecio', 'Mancuernas a los lados'),
 ('Encogimientos en multipower', 'Trapecio', 'Encogimientos guiados'),
@@ -230,7 +226,7 @@ INSERT INTO ejercicios (nombre, grupo_muscular, descripcion) VALUES
 ('Tirón a la cara con cuerda', 'Trapecio', 'Face pull alto para trapecio medio');
 
 -- LUMBAR
-INSERT INTO ejercicios (nombre, grupo_muscular, descripcion) VALUES
+INSERT IGNORE INTO ejercicios (nombre, grupo_muscular, descripcion) VALUES
 ('Hiperextensiones en banco lumbar', 'Lumbar', 'Extensión de tronco en banco romano'),
 ('Hiperextensiones en máquina lumbar', 'Lumbar', 'Máquina específica de lumbar'),
 ('Buenos días con barra', 'Lumbar', 'Bisagra de cadera con barra'),
