@@ -1,18 +1,40 @@
-# Gestor de Rutinas de Gimnasio
-Proyecto para el TFG en el que haré una aplicación web para organizar rutinas de gimnasio, registrar entrenos y llevar un historial.
+# 🏋️ GymNotes — Gestor de Rutinas de Gimnasio
 
-## Tecnologías
-- Frontend: Angular
-- Backend: Java con Spring Boot
-- Base de datos: MySQL
-- IDE: Eclipse
-- Otros: Git y Postman
+Aplicación web full-stack para la gestión de entrenamientos, rutinas y seguimiento de progreso en el gimnasio.
 
-## Plan de trabajo
-1. Preparar el entorno y CRUD de ejercicios en el backend
-2. Frontend básico (ejercicios)
-3. Autenticación de usuarios
-4. Rutinas
-5. Sesiones de entrenamiento
-6. Mejoras y pulido
-7. Documentación final
+## 🚀 Tecnologías utilizadas
+
+### Backend
+- Java
+- Spring Boot
+- Spring Data JPA
+- Hibernate
+- MySQL
+- API REST
+- Spring Security (cifrado de contraseñas)
+
+### Frontend
+- Angular
+- TypeScript
+- HTML
+- CSS
+- Diseño responsive
+
+## ✨ Funcionalidades principales
+
+✅ Registro e inicio de sesión de usuarios  
+✅ Creación y gestión de rutinas de entrenamiento  
+✅ Catálogo de ejercicios precargado  
+✅ Registro de sesiones de entrenamiento  
+✅ Historial de entrenamientos  
+✅ Dashboard con seguimiento diario  
+✅ Buscador y filtros de ejercicios  
+✅ Arquitectura profesional frontend/backend separada  
+
+## 🧠 Arquitectura
+
+- Backend desacoplado mediante API REST
+- Frontend SPA en Angular
+- Base de datos relacional MySQL
+- Patrón DAO y arquitectura por capas
+- Proyecto preparado para despliegue en servidor
