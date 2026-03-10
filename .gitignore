@@ -8,12 +8,19 @@ Thumbs.db
 .vscode/
 *.swp
 
+# --- Configuración sensible ---
+*.local.properties
+application-local.properties
+application-*.local.properties
+
 # --- Java / Spring (backend-gimnasio) ---
 /backend-gimnasio/target/
 /backend-gimnasio/.classpath
 /backend-gimnasio/.project
 /backend-gimnasio/.settings/
 /backend-gimnasio/.apt_generated
+/backend-gimnasio/.mvn/
+/backend-gimnasio/logs/
 
 # --- Node / Angular (frontend-gimnasio) ---
 /frontend-gimnasio/node_modules/
@@ -21,7 +28,21 @@ Thumbs.db
 /frontend-gimnasio/.angular/cache/
 /frontend-gimnasio/.husky/
 /frontend-gimnasio/.env.local
+/frontend-gimnasio/.cache/
 
 # --- Build/coverage genéricos ---
 coverage/
 build/
+out/
+tmp/
+
+# --- Sistema / IDE adicionales ---
+*.classpath
+*.project
+*.settings
+*.factorypath
+
+# --- Archivos de sistema Mac/Windows ---
+.AppleDouble
+.LSOverride
+Icon?
