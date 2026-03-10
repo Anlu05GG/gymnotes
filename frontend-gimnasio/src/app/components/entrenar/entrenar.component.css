@@ -1,0 +1,113 @@
+:host {
+  display: block;
+  max-width: 1000px;
+  margin: 22px auto;
+}
+
+h2 {
+  margin: 0 0 12px;
+  color: #ffffff;
+  text-shadow: 1px 1px 0 #000, -1px 1px 0 #000, 1px -1px 0 #000,
+    -1px -1px 0 #000;
+}
+
+.toolbar {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+input,
+select {
+  padding: 8px 10px;
+  border: 2px solid #bdbdbd;
+  border-radius: 6px;
+}
+
+select:hover {
+  border-color: rgb(36, 56, 233);
+}
+
+.input {
+  max-width: 67px;
+}
+
+label {
+  font-weight: 500;
+}
+
+button {
+  background: #444444;
+  color: #ffffff;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #666666;
+}
+
+.clean {
+  background: #eeeeee;
+  color: #1f1f1f;
+}
+
+.clean:hover {
+  background: #dddddd;
+}
+
+.grid {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+}
+
+ul {
+  margin: 0 30px 8px 0;
+}
+
+p {
+  font-weight: 500;
+}
+
+.auto-input {
+  flex: auto;
+  max-width: 393px;
+}
+
+ul li {
+  position: relative;
+  transition: opacity 0.2s ease, transform 0.1s ease;
+}
+
+.remove {
+  background: transparent;
+  color: #e53935;
+  margin-left: 8px;
+  padding: 0 4px;
+  font-size: 0.9rem;
+  border: none;
+  cursor: pointer;
+
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.1s ease;
+}
+
+li:hover {
+  transform: scale(1.15);
+}
+
+ul li:hover .remove {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.remove:hover {
+  transform: scale(1.15);
+  background-color: #ffcece;
+}

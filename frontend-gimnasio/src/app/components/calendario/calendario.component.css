@@ -1,0 +1,79 @@
+:host {
+  display: block;
+  max-width: 760px;
+  margin: 22px auto;
+}
+
+.top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  color: #ffffff;
+  text-shadow: 1px 1px 0 #000, -1px 1px 0 #000, 1px -1px 0 #000,
+    -1px -1px 0 #000;
+}
+
+button {
+  background: #363535;
+  color: #ffffff;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #535353;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 8px;
+}
+
+.head {
+  text-align: center;
+  font-weight: 600;
+  color: #666666;
+  background: linear-gradient(to bottom, #ffffff, #ffe9cc);
+  border-radius: 8px;
+  padding: 6px 0;
+}
+
+.cell {
+  height: 58px;
+  border: 3px solid #ddd;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  cursor: pointer;
+  background: linear-gradient(to bottom, #ffffff, #d8d8d8);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transform-origin: center center;
+}
+
+.cell:hover {
+  transform: scale(1.03);
+  box-shadow: 0px 5px 15px rgb(58, 58, 58);
+}
+
+.cell.hoy {
+  outline: 2px solid #8c00ff;
+  outline-offset: 2px;
+}
+
+.cell.fire {
+  background: #ffd884;
+  border-color: #ff9822;
+  cursor: pointer;
+}
+
+.emoji {
+  position: absolute;
+  bottom: 6px;
+  right: 6px;
+}

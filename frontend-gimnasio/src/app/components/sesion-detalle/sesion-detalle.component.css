@@ -1,0 +1,45 @@
+:host {
+  display: block;
+  max-width: 1000px;
+  margin: 22px auto;
+}
+
+h2 {
+  margin: 0 0 12px;
+  color: #ffffff;
+  text-shadow: 1px 1px 0 #000, -1px 1px 0 #000, 1px -1px 0 #000,
+    -1px -1px 0 #000;
+}
+
+h4 {
+  color: #000000;
+  transition: color 0.5s ease;
+  display: inline;
+}
+
+h4:hover {
+  color: rgb(87, 255, 247);
+}
+
+.btn.back {
+  background: #eeeeee;
+  color: #222222;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.btn.back:hover {
+  background: #dddddd;
+}
+
+.grid {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+}
+
+ul {
+  margin: 0 30px 8px 0;
+}

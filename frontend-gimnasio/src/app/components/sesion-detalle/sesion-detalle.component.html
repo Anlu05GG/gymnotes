@@ -1,0 +1,17 @@
+<h2>Sesión: {{ fecha }}</h2>
+<h4>Volumen: {{ volumenTotal }} kgs</h4>
+<br /><br />
+<button class="btn back" type="button" (click)="volver()">Volver</button>
+<hr />
+
+<!-- Tarjeta ejercicio -->
+<div class="grid">
+  <div class="card" *ngFor="let g of grupos">
+    <h3>{{ g.nombre || "Ejercicio " + g.ejercicioId }}</h3>
+    <ul>
+      <li *ngFor="let s of g.series; let i = index">
+        {{ s.peso }} kg x {{ s.repeticiones }} reps
+      </li>
+    </ul>
+  </div>
+</div>

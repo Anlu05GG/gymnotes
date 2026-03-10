@@ -1,0 +1,53 @@
+<h2>Ejercicios de la rutina: {{ rutinaNombre }}</h2>
+<div *ngIf="error">{{ error }}</div>
+
+<!-- Barra de filtros -->
+<div class="toolbar">
+  <select [(ngModel)]="grupoSel" (ngModelChange)="filtrar()">
+    <option value="">-- Todos los grupos --</option>
+    <option *ngFor="let g of grupos" [value]="g">{{ g }}</option>
+  </select>
+
+  <input type="text" class="auto-input" placeholder="Buscar ejercicio..." [(ngModel)]="q" (ngModelChange)="filtrar()"
+    [matAutocomplete]="auto" />
+
+  <mat-autocomplete #auto="matAutocomplete" (optionSelected)="seleccionar($event.option.value)">
+    <mat-option *ngFor="let e of opciones" [value]="e.nombre">{{
+      e.nombre
+      }}</mat-option>
+  </mat-autocomplete>
+
+  <button class="btn clean" type="button" (click)="limpiarFiltros()">
+    Limpiar
+  </button>
+</div>
+
+<!-- Añadir items -->
+<div class="toolbar">
+  <label for="series"><small>Series:</small></label>
+  <input id="series" type="number" class="input" [(ngModel)]="series" min="1" (keydown.enter)="add()" />
+
+  <label for="repeticiones"><small>Repeticiones:</small></label>
+  <input id="repeticiones" type="number" class="input" [(ngModel)]="reps" min="1" (keydown.enter)="add()" />
+
+  <button class="btn" type="button" (click)="add()" [disabled]="!ejercicioId || series < 1 || reps < 1">
+    Añadir
+  </button>
+  <button class="btn back" type="button" (click)="volver()">Volver</button>
+</div>
+
+<hr />
+
+<!-- Listado de ejercicios -->
+<ul *ngIf="items.length; else vacio">
+  <li *ngFor="let it of items">
+    <strong>#{{ it.orden }}</strong>
+    - {{ it.ejercicioNombre || "Ejercicio " + it.ejercicioId }} -
+    {{ it.seriesObjetivo }}x{{ it.repeticionesObjetivo }}
+    <button class="remove" type="button" (click)="quitar(it)">Quitar</button>
+  </li>
+</ul>
+
+<ng-template #vacio>
+  <p>Esta rutina aún no tiene ejercicios.</p>
+</ng-template>
